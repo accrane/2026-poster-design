@@ -114,9 +114,14 @@
 // Retro decoder — "i" icon + tooltip
 // ------------------------------------------------------------------
 
+.retro-object { position: relative; }   // wrapper around every retro illustration
 .retro-info {
 	position: absolute;
 	z-index: 4;
+	// One rule per illustration — offsets are % of the artwork box, so they
+	// scale with the image. Add a new line for every new object.
+	&--rolodex    { left: 15.7%; top: 7.9%; }    // 88 / 44 on the 560px hero video
+	&--typewriter { left: 13.5%; top: 11.5%; }   // 70 / 60 on the 520px typewriter
 	&__btn {
 		width: 24px; height: 24px;
 		border-radius: 50%;

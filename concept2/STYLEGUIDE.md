@@ -54,7 +54,7 @@ M12 1.6l2.9 6.6 7.1.7-5.4 4.8 1.6 7.1L12 17.2l-6.2 3.6 1.6-7.1L2 8.9l7.1-.7z
 
 **Work thumbnail** `.thumb-card` — 22px radius, 2px brown border, 3×3 grid at 280px rows, 24px gap.
 
-**Retro decoder** `.retro-info` — a 24px brown-ringed "i" in Anton placed ~8px outside the top-left of any retro illustration. Hover or focus shows a tan tooltip: 2px brown border, 12px radius, 1.5px dotted inset ring, small tail, DM Sans 13px, one plain sentence ("This is what used to be known as a Rolodex."). No heading, no default browser tooltip.
+**Retro decoder** `.retro-info` — a 24px brown-ringed "i" in Anton placed just outside the top-left of the drawn object. Every illustration is its own object: wrap it in `.retro-object.retro-object--{name}` and position its icon with a dedicated `.retro-info--{name}` rule in **percentages of the artwork box** (rolodex 15.7% / 7.9%, typewriter 13.5% / 11.5%), never shared pixel offsets, so the icon rides with the image at any width. Call `bellaworks_retro_info( $sentence, $name )`. Hover or focus shows a tan tooltip: 2px brown border, 12px radius, 1.5px dotted inset ring, small tail, DM Sans 13px, one plain sentence ("This is what used to be known as a Rolodex."). No heading, no default browser tooltip.
 
 **Watermarks** `.wm` — faint texture in the section's foreground color at 6–20% opacity, placed with negative offsets so they crop at the edges: outlined star, dashed ring set, halftone dot patch (SVG pattern of r2.2 dots on a 10px grid masked by a radial gradient), the bw monogram, a starburst outline. One or two per section, never over the copy column, always `z-index:-1` inside an isolated section.
 

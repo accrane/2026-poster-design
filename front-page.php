@@ -31,8 +31,8 @@ $dir = get_template_directory_uri();
 					</div>
 				</div>
 				<div class="hero__art-col">
-					<div class="hero__art">
-						<?php bellaworks_retro_info( 'This is what used to be known as a Rolodex.' ); ?>
+					<div class="hero__art retro-object retro-object--rolodex">
+						<?php bellaworks_retro_info( 'This is what used to be known as a Rolodex.', 'rolodex' ); ?>
 						<video id="heroVideo" class="hero__video" muted playsinline preload="auto" width="560" height="560">
 							<source src="<?php echo esc_url( $dir . '/assets/video/hero-rolodex-alpha.webm' ); ?>" type="video/webm; codecs=vp9">
 							<source src="<?php echo esc_url( $dir . '/assets/video/hero-rolodex-tan.mp4' ); ?>" type="video/mp4">

@@ -170,10 +170,17 @@ function bellaworks_watermark( $kind, $color, $opacity, $style ) {
 }
 
 /**
- * Retro decoder: "i" icon + styled tooltip. Place inside a position:relative art wrapper.
+ * Retro decoder: "i" icon + styled tooltip.
+ * Each retro object gets its own name; the icon is positioned per object in
+ * _components.scss (.retro-info--{name}) as percentages of the artwork, so it
+ * scales with the image. Place inside `.retro-object.retro-object--{name}`.
+ *
+ * @param string $text   One-sentence tooltip.
+ * @param string $object rolodex | typewriter | ... (must have a CSS rule).
  */
-function bellaworks_retro_info( $text, $style = 'left: 88px; top: 44px;' ) {
-	echo '<div class="retro-info" style="' . esc_attr( $style ) . '">';
+function bellaworks_retro_info( $text, $object = 'rolodex' ) {
+	$object = sanitize_html_class( $object );
+	echo '<div class="retro-info retro-info--' . esc_attr( $object ) . '">';
 	echo '<button type="button" class="retro-info__btn" aria-label="' . esc_attr__( 'What is this?', 'bellaworks' ) . '">i</button>';
 	echo '<div class="retro-info__tip" role="tooltip">' . esc_html( $text ) . '</div>';
 	echo '</div>';
