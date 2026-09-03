@@ -68,7 +68,7 @@ $form-border: 2px solid $brown;
 			margin: 0;
 			padding: 0 18px;
 			height: 54px;
-			background: $tan;
+			background: rgba(255, 255, 255, 0.22);   // a whisper lighter than the tan page
 			color: $brown;
 			border: $form-border;
 			border-radius: $form-radius;
