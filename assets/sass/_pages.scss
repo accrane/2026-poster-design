@@ -1,0 +1,106 @@
+// ------------------------------------------------------------------
+// Inner pages — shared page hero + About (page-about-us.php)
+// ------------------------------------------------------------------
+
+// ---- Page hero (reused by every inner page) ----
+.page-hero {
+	padding: 40px 0 36px;
+	@include mid { padding: 72px 0 64px; }
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 32px;
+		align-items: center;
+		@include mid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: $gutter; }
+	}
+	&__copy {
+		display: flex; flex-direction: column; gap: 24px;
+		@include mid { grid-column: 1 / 8; gap: 30px; }
+	}
+	&__eyebrow { display: flex; align-items: center; gap: 12px; }
+	&__title { font-size: clamp(56px, 7.2vw, 104px); }
+	&__text { max-width: 640px; p + p { margin-top: 1em; } }
+	&__art-col {
+		display: flex; justify-content: center; align-items: center;
+		@include mid { grid-column: 8 / 13; }
+	}
+	&__art { position: relative; width: 100%; max-width: 520px; img { width: 100%; height: auto; display: block; } }
+	&__vertical {
+		display: none;
+		@include desk {
+			display: block;
+			position: absolute;
+			right: 34px; top: 50%;
+			transform: translateY(-50%) rotate(180deg);
+			writing-mode: vertical-rl;
+			font-size: 11px;
+		}
+	}
+}
+
+// ---- About: Our approach (red) ----
+.approach {
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 34px;
+		align-items: center;
+		@include mid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: $gutter; }
+	}
+	&__copy {
+		display: flex; flex-direction: column; gap: 26px;
+		@include mid { grid-column: 1 / 8; }
+	}
+	&__text { max-width: 640px; p + p { margin-top: 1em; } }
+	&__aside {
+		display: flex; flex-direction: column; gap: 22px;
+		border-top: 2px dashed $tan-55;
+		padding-top: 28px;
+		@include mid { grid-column: 8 / 13; border-top: 0; border-left: 2px dashed $tan-55; padding: 0 0 0 40px; }
+	}
+	&__quote { font-size: 28px; line-height: 1.25; @include tab { font-size: 34px; } }
+}
+
+// ---- About: Team (tan) ----
+.team {
+	&__inner { display: flex; flex-direction: column; gap: 40px; @include tab { gap: 56px; } }
+	&__head { display: flex; align-items: flex-end; justify-content: space-between; .star { margin-bottom: 14px; } }
+	&__member {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 22px;
+		align-items: start;
+		border-top: 2px dashed $brown-35;
+		padding-top: 32px;
+		@include mid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: $gutter; padding-top: 48px; }
+	}
+	&__who {
+		display: flex; flex-direction: column; gap: 18px;
+		@include mid { grid-column: 1 / 5; }
+	}
+	&__photo {
+		width: 100%;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+		display: block;
+		border: 2px solid $brown;
+		border-radius: 22px;
+		filter: grayscale(1) contrast(1.05);
+	}
+	&__name { font-size: 36px; @include tab { font-size: 44px; } }
+	&__bio {
+		max-width: 760px;
+		@include mid { grid-column: 5 / 13; }
+		p { font-size: 17px; line-height: 1.6; }
+		p + p { margin-top: 14px; }
+	}
+}
+
+// ---- Closing band (brown) ----
+.closer {
+	padding: 60px 0;
+	@include tab { padding: 80px 0; }
+	&__inner { display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center; }
+	&__title { font-size: clamp(36px, 5vw, 72px); max-width: 1040px; }
+}

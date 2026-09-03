@@ -80,3 +80,12 @@ M12 1.6l2.9 6.6 7.1.7-5.4 4.8 1.6 7.1L12 17.2l-6.2 3.6 1.6-7.1L2 8.9l7.1-.7z
 ## 9. Copy rules
 
 Copy comes from the client verbatim. Never invent stats, testimonials, or headings. Highlight one word per heading in red; keep script lines short (2–5 words).
+
+## 10. Inner pages (added with About Us)
+
+- **Page hero** `.page-hero`: same anatomy as the homepage hero minus the animation. Eyebrow = red star + the page title as a label; H1 in Anton at `clamp(56px, 7.2vw, 104px)` with the second thought in red (`<strong>` in the ACF title becomes `.text-red`); lede copy max 640px; a retro illustration in the right column with its decoder icon; the vertical label on the right edge.
+- **Retro object per page** (illustrated on Higgsfield with the mascot as style reference, keyed to transparency, palette PNG): Home = rolodex ("This is what used to be known as a Rolodex."), About = typewriter ("This is what used to be known as a typewriter."). Pick one object per page; keep the tooltip to one sentence in that pattern.
+- **Two-column statement** `.approach` (red): H2 + copy left (cols 1–7), a dashed vertical rule and a Kaushan Script pull quote at 34px right (cols 8–12), star above the quote.
+- **Team list** `.team`: rows separated by dashed brown rules; photo (4:3, 22px radius, 2px brown border, `grayscale(1) contrast(1.05)`) and Anton name in cols 1–4, bio paragraphs at 17px in cols 5–12.
+- **Closing band** `.closer` (brown): star rule, the homepage tagline with the red highlight, and a large red Book A Call. Use it to end any inner page that has no CTA of its own.
+- **Template pattern**: `page-{slug}.php` reads ACF with `get_field()`, guards every section with `if ( $value )`, and composes devices from `inc/template-tags.php`. Field groups live in `acf-json/`.

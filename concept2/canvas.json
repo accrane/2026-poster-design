@@ -1,10 +1,43 @@
 {
   "artboards": [
-    { "file": "Main.dc.html", "title": "Homepage · Desktop", "x": 0, "y": 0, "w": 1440, "h": 5720, "expand": "fill" },
-    { "file": "Mobile.dc.html", "title": "Homepage · Mobile", "x": 1560, "y": 0, "w": 390, "h": 5200, "expand": "fit" }
+    {
+      "file": "Main.dc.html",
+      "title": "Homepage \u00b7 Desktop",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 5720,
+      "expand": "fill"
+    },
+    {
+      "file": "Mobile.dc.html",
+      "title": "Homepage \u00b7 Mobile",
+      "x": 1560,
+      "y": 0,
+      "w": 390,
+      "h": 5200,
+      "expand": "fit"
+    },
+    {
+      "file": "About.dc.html",
+      "title": "About Us \u00b7 Desktop",
+      "x": 2040,
+      "y": 0,
+      "w": 1440,
+      "h": 4300,
+      "expand": "fit"
+    }
   ],
   "annotations": [
-    { "id": "concept-note", "x": 1560, "y": -190, "w": 380, "text": "Bellaworks homepage · retro poster concept, round two\nConventional stacked layout (no bento tiles). Palette sampled from the reference: red #df0118, cream #efdec4, dark #2b0b0a.\nStyle devices carried over from the reference: condensed display caps + brush script, round stamp, starbursts, speech bubble, star + dashed dividers, icon strip, rubber-hose mascot (illustrated, no photography).\nCopy is verbatim from the current homepage." }
+    {
+      "id": "concept-note",
+      "x": 1560,
+      "y": -190,
+      "w": 380,
+      "text": "Bellaworks homepage \u00b7 retro poster concept, round two\nConventional stacked layout (no bento tiles). Palette sampled from the reference: red #df0118, cream #efdec4, dark #2b0b0a.\nStyle devices carried over from the reference: condensed display caps + brush script, round stamp, starbursts, speech bubble, star + dashed dividers, icon strip, rubber-hose mascot (illustrated, no photography).\nCopy is verbatim from the current homepage."
+    }
   ],
-  "launch": { "view": "canvas" }
+  "launch": {
+    "view": "canvas"
+  }
 }
