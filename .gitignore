@@ -5,3 +5,6 @@ concept/hero-*.png
 concept2/mascot-*.png
 concept2/rolodex-*.png
 concept2/rolodex-*-900.png
+concept2/node_modules/
+concept2/hero-rolodex.mp4
+concept2/*.ai

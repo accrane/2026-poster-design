@@ -1,0 +1,150 @@
+/* =====================================================================
+   Bellaworks 2026 — retro poster system
+   Single source of truth for tokens + reusable components.
+   Every value here is lifted verbatim from the approved homepage
+   (concept2/Main.dc.html + hero.html). Extend, don't fork.
+   ===================================================================== */
+
+/* ---------- Fonts (Google) ----------
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Kaushan+Script&family=DM+Sans:wght@400;500;700&display=swap">
+*/
+
+/* ---------- Tokens ---------- */
+:root {
+  /* palette — the ONLY three colors on the site */
+  --bw-brown: #2b0b0a;   /* darkest: text on tan, dark sections, linework */
+  --bw-red:   #df0118;   /* accent: script, highlights, red sections, CTAs */
+  --bw-tan:   #efdec4;   /* page + light sections, text on brown/red */
+  --bw-red-hover: #b20013;              /* link hover on tan */
+  --bw-tan-55: rgba(239,222,196,0.55);  /* dashed dividers on red/brown */
+  --bw-tan-35: rgba(239,222,196,0.35);  /* icon-strip rules on brown */
+  --bw-brown-35: rgba(43,11,10,0.35);   /* dashed dividers on tan */
+
+  /* type */
+  --bw-font-display: 'Anton', 'Arial Narrow', Impact, sans-serif;
+  --bw-font-script:  'Kaushan Script', 'Brush Script MT', cursive;
+  --bw-font-body:    'DM Sans', system-ui, sans-serif;
+
+  /* display ramp (fluid) */
+  --bw-h1:      clamp(72px, 11.4vw, 164px);
+  --bw-h1-script: clamp(56px, 9.2vw, 132px);
+  --bw-h2-xl:   clamp(56px, 8.9vw, 128px);   /* OUR WORK, ABOUT US */
+  --bw-h2:      clamp(48px, 6.7vw, 96px);    /* section headings */
+  --bw-h2-band: clamp(36px, 5vw, 72px);      /* tagline band */
+  --bw-script-lg: 52px;                       /* "(We Got You Covered)", "Get Started in" */
+  --bw-script-md: 44px;                       /* band sub-line */
+
+  /* layout */
+  --bw-wrap: 1240px;
+  --bw-gutter: 40px;          /* .wrap side gutter and 12-col grid gap */
+  --bw-section-y: 110px;      /* standard section padding (Solutions uses 100px, band 64px) */
+  --bw-nav-h: 88px;
+  --bw-radius-card: 22px;     /* work thumbnails */
+  --bw-radius-tip: 12px;      /* tooltip card */
+}
+
+/* ---------- Base ---------- */
+html, body { background: var(--bw-tan); color: var(--bw-brown); font-family: var(--bw-font-body); -webkit-font-smoothing: antialiased; margin: 0; }
+* { box-sizing: border-box; }
+a { color: var(--bw-red); text-decoration: none; }
+a:hover { color: var(--bw-red-hover); }
+p { font-size: 19px; line-height: 1.6; }           /* body copy in two-column sections; About uses 20px */
+.wrap { width: min(var(--bw-wrap), calc(100% - 80px)); margin: 0 auto; }
+.grid12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--bw-gutter); }
+
+/* ---------- Type ---------- */
+.display { font-family: var(--bw-font-display); font-weight: 400; text-transform: uppercase; letter-spacing: 0.005em; line-height: 0.9; margin: 0; }
+.script  { font-family: var(--bw-font-script); font-weight: 400; line-height: 1; }
+.label   { font-family: var(--bw-font-body); font-weight: 700; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; }
+.nav a   { color: var(--bw-brown); font-family: var(--bw-font-body); font-weight: 700; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; }
+.nav a:hover { color: var(--bw-red); }
+
+/* ---------- Sections ----------
+   Alternate tan / red / brown. Every section gets position:relative,
+   overflow:hidden, isolation:isolate so a watermark can sit at z-index:-1. */
+.section { position: relative; overflow: hidden; isolation: isolate; padding: var(--bw-section-y) 0; }
+.section--tan   { background: var(--bw-tan);   color: var(--bw-brown); }
+.section--red   { background: var(--bw-red);   color: var(--bw-tan); }
+.section--brown { background: var(--bw-brown); color: var(--bw-tan); }
+.section--red a, .section--brown a { color: var(--bw-tan); }
+.section--red a:hover, .section--brown a:hover { color: var(--bw-brown); }
+
+/* ---------- Buttons ----------
+   Pill + inset dotted ring in the text color. Variants are just colors. */
+.btn { display: inline-flex; align-items: center; gap: 12px; height: 52px; padding: 0 26px; border-radius: 999px; position: relative; font-family: var(--bw-font-body); font-weight: 700; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; }
+.btn::after { content: ""; position: absolute; inset: 5px; border: 2px dotted currentColor; border-radius: 999px; pointer-events: none; }
+.btn--brown { background: var(--bw-brown); color: var(--bw-tan); }
+.btn--red   { background: var(--bw-red);   color: var(--bw-tan); }
+.btn--tan   { background: var(--bw-tan);   color: var(--bw-brown); }
+.btn--sm    { height: 44px; padding: 0 22px; }        /* nav CTA */
+.btn--lg    { height: 60px; padding: 0 40px; font-size: 14px; } /* Steps CTA */
+.btn svg    { width: 16px; height: 16px; }            /* arrow: stroke currentColor, width 2.6, round caps */
+
+/* ---------- Dividers ---------- */
+.rule-dashed { border-top: 2px dashed var(--bw-tan-55); }         /* on red/brown */
+.section--tan .rule-dashed { border-top-color: var(--bw-brown-35); }
+.star-rule { display: flex; align-items: center; gap: 22px; width: 100%; }
+.star-rule::before, .star-rule::after { content: ""; flex: 1; border-top: 2px dashed var(--bw-tan-55); }
+.star-rule svg { width: 26px; height: 26px; fill: currentColor; }  /* star path: see STYLEGUIDE.md */
+
+/* ---------- Icon strip (Solutions) ---------- */
+.icon-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px dashed var(--bw-tan-35); border-bottom: 2px dashed var(--bw-tan-35); }
+.icon-strip > * { display: flex; flex-direction: column; align-items: center; gap: 22px; padding: 44px 20px; border-right: 2px solid var(--bw-tan-35); }
+.icon-strip > *:last-child { border-right: 0; }
+.icon-strip svg { width: 64px; height: 64px; stroke: var(--bw-tan); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- Work thumbnails ---------- */
+.thumb-card { border-radius: var(--bw-radius-card); overflow: hidden; border: 2px solid var(--bw-brown); }
+.thumb-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 280px; gap: 24px; }
+
+/* ---------- Retro decoder (info icon + tooltip) ----------
+   Place inside a position:relative wrapper around the illustration,
+   ~8px outside the artwork's top-left corner. */
+.retro-info { position: absolute; z-index: 4; }
+.retro-info__btn { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--bw-brown); background: var(--bw-tan); color: var(--bw-brown); font-family: var(--bw-font-display); font-size: 14px; line-height: 1; display: flex; align-items: center; justify-content: center; cursor: help; padding: 0; }
+.retro-info__btn:focus-visible { outline: 2px dotted var(--bw-brown); outline-offset: 3px; }
+.retro-info__tip { position: absolute; left: 30px; top: -8px; width: 240px; background: var(--bw-tan); color: var(--bw-brown); border: 2px solid var(--bw-brown); border-radius: var(--bw-radius-tip); padding: 12px 14px; font-family: var(--bw-font-body); font-size: 13px; line-height: 1.45; opacity: 0; transform: translateX(-6px); pointer-events: none; transition: opacity .18s ease, transform .18s ease; }
+.retro-info__tip::before { content: ""; position: absolute; inset: 4px; border: 1.5px dotted var(--bw-brown); border-radius: 8px; pointer-events: none; }
+.retro-info__tip::after { content: ""; position: absolute; left: -9px; top: 12px; width: 12px; height: 12px; background: var(--bw-tan); border-left: 2px solid var(--bw-brown); border-bottom: 2px solid var(--bw-brown); transform: rotate(45deg); }
+.retro-info:hover .retro-info__tip, .retro-info:focus-within .retro-info__tip { opacity: 1; transform: translateX(0); }
+
+/* ---------- Watermarks ----------
+   Faint texture SVGs, absolutely positioned, z-index:-1 inside an
+   isolated section. Color = the section's foreground. */
+.wm { position: absolute; pointer-events: none; z-index: -1; }
+.wm--06 { opacity: 0.06; }  /* monogram behind Work */
+.wm--08 { opacity: 0.08; }  /* big rings behind Steps */
+.wm--10 { opacity: 0.10; }  /* rings behind Techies */
+.wm--12 { opacity: 0.12; }  /* halftone in hero, stars right */
+.wm--16 { opacity: 0.16; }  /* stars left, About starburst, footer halftone */
+.wm--20 { opacity: 0.20; }  /* halftone in Solutions */
+
+/* ---------- Fixed nav ---------- */
+.nav--fixed { position: fixed; top: 0; left: 0; right: 0; z-index: 20; background: var(--bw-tan); }
+.nav-spacer { height: var(--bw-nav-h); }
+.nav .wrap { height: var(--bw-nav-h); display: flex; align-items: center; justify-content: space-between; }
+.nav .logo { height: 44px; width: auto; display: block; }   /* footer logo: 48px, cream */
+
+/* ---------- Breakpoints (from the approved desktop page) ---------- */
+@media (max-width: 1000px) {
+  .wrap { width: calc(100% - 48px); }
+  .grid12 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .grid12 > * { grid-column: auto; }
+  .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 240px; }
+  .nav-links { display: none; }
+}
+@media (max-width: 800px) {
+  .icon-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .icon-strip > * { border-right: 0; border-bottom: 2px solid var(--bw-tan-35); }
+}
+@media (max-width: 640px) {
+  .work-grid { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .wrap { width: calc(100% - 32px); }
+}
+
+/* ---------- Motion (Lenis + GSAP ScrollTrigger) ---------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.pin-section { z-index: 5; }                      /* any pinned section must sit above later sections */
+.hero-l1, .hero-l2, .hero-simple { will-change: transform; }

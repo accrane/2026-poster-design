@@ -3,9 +3,25 @@
   "configurations": [
     {
       "name": "concept2-preview",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8766", "--directory", "concept2"],
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "concept2/serve.js",
+        "8766"
+      ],
       "port": 8766
+    },
+    {
+      "name": "alt-preview",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "--yes",
+        "http-server",
+        "concept2",
+        "-p",
+        "8767",
+        "-c-1"
+      ],
+      "port": 8767
     }
   ]
 }
