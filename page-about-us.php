@@ -120,7 +120,7 @@ if ( $row2_text_left && preg_match( '/<h2[^>]*>(.*?)<\/h2>/is', $row2_text_left,
 			<div class="wrapper closer__inner">
 				<?php bellaworks_star_rule( 'tan' ); ?>
 				<h2 class="display closer__title">Creating stunning websites <span class="text-red">that also drive results.</span></h2>
-				<?php bellaworks_button( 'Book A Call', home_url( '/contact-us/' ), 'red', 'lg' ); ?>
+				<?php bellaworks_button( 'Book A Call', home_url( '/lets-do-this/' ), 'red', 'lg' ); ?>
 			</div>
 		</section>
 

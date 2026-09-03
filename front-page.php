@@ -27,7 +27,7 @@ $dir = get_template_directory_uri();
 						<div class="script hero__script hero-simple">Simple.</div>
 					</div>
 					<div class="hero__actions">
-						<?php bellaworks_button( 'Book A Call', home_url( '/contact-us/' ), 'brown' ); ?>
+						<?php bellaworks_button( 'Book A Call', home_url( '/lets-do-this/' ), 'brown' ); ?>
 					</div>
 				</div>
 				<div class="hero__art-col">
@@ -65,7 +65,7 @@ $dir = get_template_directory_uri();
 				<div class="techies__copy">
 					<h2 class="display">Leave the tech<br>to the <span class="text-red">techies</span></h2>
 					<p>Our process is smooth from the get-go. We often work with clients whose main role isn’t managing the website but are all about making it a success. Our pros unite strategy, copywriting, design, and development to level up your web presence. That way, you can spend more time on what you’re most passionate about in your workday.</p>
-					<?php bellaworks_button( 'Book A Call', home_url( '/contact-us/' ), 'red' ); ?>
+					<?php bellaworks_button( 'Book A Call', home_url( '/lets-do-this/' ), 'red' ); ?>
 				</div>
 			</div>
 		</section>
@@ -157,7 +157,7 @@ $dir = get_template_directory_uri();
 						<p><strong>Proudly share</strong> your website with the world and focus on what you enjoy</p>
 					</div>
 				</div>
-				<?php bellaworks_button( 'Book A Call', home_url( '/contact-us/' ), 'red', 'lg' ); ?>
+				<?php bellaworks_button( 'Book A Call', home_url( '/lets-do-this/' ), 'red', 'lg' ); ?>
 			</div>
 		</section>
 

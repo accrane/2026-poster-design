@@ -115,3 +115,32 @@
 	&__inner { display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center; }
 	&__title { font-size: clamp(36px, 5vw, 72px); max-width: 1040px; }
 }
+
+// ---- Contact ----
+.contact-hero {
+	&__address { font-style: normal; font-size: 17px; line-height: 1.6; @include tab { font-size: 19px; } strong { font-weight: 700; } }
+	&__lines {
+		display: flex; flex-direction: column; gap: 12px;
+		border-top: 2px dashed $brown-35;
+		padding-top: 22px;
+		max-width: 420px;
+	}
+	&__line { display: flex; align-items: center; gap: 14px; color: $brown; font-size: 17px; @include tab { font-size: 19px; } .label { width: 22px; color: $red; } &:hover { color: $red; } }
+	&__value { font-weight: 700; }
+}
+.contact-ctas {
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 48px;
+		@include tab { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; }
+	}
+	&__item {
+		display: flex; flex-direction: column; gap: 26px; align-items: flex-start;
+		h2 { font-size: clamp(44px, 5vw, 72px); }
+		& + & {
+			border-top: 2px dashed $tan-55; padding-top: 48px;
+			@include tab { border-top: 0; padding-top: 0; border-left: 2px dashed $tan-55; padding-left: 80px; }
+		}
+	}
+}

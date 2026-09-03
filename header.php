@@ -31,7 +31,7 @@
 					'fallback_cb'    => 'bellaworks_menu_fallback',
 					'depth'          => 1,
 				) );
-				bellaworks_button( 'Book A Call', home_url( '/contact-us/' ), 'red', 'sm', false );
+				bellaworks_button( 'Book A Call', home_url( '/lets-do-this/' ), 'red', 'sm', false );
 				?>
 			</nav>
 		</div>
