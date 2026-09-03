@@ -7,6 +7,25 @@ jQuery(document).ready(function ($) {
     $(this).attr('aria-expanded', open ? 'true' : 'false');
   });
 
+  /* ---------- Forms: peeking eyes ----------
+     A little rubber-hose face hides behind every text field and pops up
+     to watch when the field gets focus (CSS handles the motion via
+     :focus-within; this only adds the markup). */
+  var eyesSVG = '<svg viewBox="0 0 84 44" aria-hidden="true">' + '<path d="M4 44 C4 18 20 6 42 6 C64 6 80 18 80 44 Z" fill="#efdec4" stroke="#2b0b0a" stroke-width="3" stroke-linejoin="round"></path>' + '<ellipse cx="29" cy="27" rx="11" ry="13" fill="#fff" stroke="#2b0b0a" stroke-width="3"></ellipse>' + '<ellipse cx="55" cy="27" rx="11" ry="13" fill="#fff" stroke="#2b0b0a" stroke-width="3"></ellipse>' + '<g class="field-eyes__pupils">' + '<path d="M29 25 m-5.5 0 a5.5 5.5 0 1 1 5.5 5.5 L29 25 Z" fill="#2b0b0a"></path>' + '<path d="M55 25 m-5.5 0 a5.5 5.5 0 1 1 5.5 5.5 L55 25 Z" fill="#2b0b0a"></path>' + '</g>' + '<g class="field-eyes__lids"><ellipse cx="29" cy="27" rx="11.5" ry="13.5" fill="#efdec4"></ellipse><ellipse cx="55" cy="27" rx="11.5" ry="13.5" fill="#efdec4"></ellipse></g>' + '<path d="M16 12 q6 -6 12 -2" fill="none" stroke="#2b0b0a" stroke-width="3" stroke-linecap="round"></path>' + '<path d="M56 10 q6 -4 12 2" fill="none" stroke="#2b0b0a" stroke-width="3" stroke-linecap="round"></path>' + '</svg>';
+  $('.gform_wrapper .ginput_container').find('input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"], textarea').each(function () {
+    var $parent = $(this).parent();
+    if ($parent.find('.field-eyes').length) {
+      return;
+    }
+    $parent.addClass('has-field-eyes').prepend('<span class="field-eyes">' + eyesSVG + '</span>');
+  });
+  // class toggle alongside :focus-within, so the eyes also work where that selector doesn't fire
+  $(document).on('focusin', '.has-field-eyes', function () {
+    $(this).addClass('is-watching');
+  }).on('focusout', '.has-field-eyes', function () {
+    $(this).removeClass('is-watching');
+  });
+
   /* ---------- Homepage hero: scroll-scrubbed rolodex + headline exit ----------
      Lenis drives smooth scroll; GSAP ScrollTrigger pins the hero under the
      fixed nav, scrubs the video and animates the headline. */

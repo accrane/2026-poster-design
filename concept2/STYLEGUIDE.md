@@ -100,3 +100,4 @@ The plugin's own stylesheets are switched off (`gform_disable_css` in `inc/theme
 - Submit: `gform_submit_button` is filtered into a real `<button>` carrying `.btn.btn--red.btn--lg`, so it inherits the pill and dotted ring. A plain `<input type=submit>` fallback is styled too.
 - Validation: red 2px summary box, red labels and borders on errored fields, red 14px messages; the confirmation message is Anton in red.
 - Page: `page-lets-do-this.php` puts the form in cols 1–8 with the stamp, address and phone/email in cols 9–12; hero is text only ("The start of something big!" with "big!" in script).
+- **Peeking eyes**: every text field gets a small rubber-hose face (`.field-eyes`, injected by `custom.js`) hidden behind its top-right edge. On focus it rises with a little overshoot, pupils look down at the field, and it blinks every few seconds; it drops back on blur. Reduced-motion users get it without the animation. Keep it on forms only.

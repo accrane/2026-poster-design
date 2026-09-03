@@ -160,3 +160,41 @@ $form-border: 2px solid $brown;
 		max-width: 760px;
 	}
 }
+
+// ------------------------------------------------------------------
+// Peeking eyes — markup injected by custom.js behind each text field.
+// The face rises from behind the field's top edge on focus.
+// ------------------------------------------------------------------
+.has-field-eyes {
+	position: relative;
+	> input, > textarea { position: relative; z-index: 1; }
+}
+.field-eyes {
+	position: absolute;
+	right: 28px;
+	top: 0;
+	width: 66px;
+	height: 34px;
+	z-index: 0;
+	pointer-events: none;
+	opacity: 0;
+	transform: translateY(-30%);
+	transition: transform .35s cubic-bezier(.34, 1.56, .64, 1), opacity .12s ease;
+	svg { width: 100%; height: 100%; display: block; overflow: visible; }
+	.field-eyes__lids { opacity: 0; }
+	.field-eyes__pupils { transition: transform .2s ease; }
+}
+.has-field-eyes:focus-within .field-eyes, .has-field-eyes.is-watching .field-eyes {
+	opacity: 1;
+	transform: translateY(-88%);
+	.field-eyes__pupils { transform: translateY(2px); }          // looking down at what you type
+	.field-eyes__lids { animation: field-eyes-blink 4.5s ease-in-out 1.2s infinite; }
+}
+@keyframes field-eyes-blink {
+	0%, 92%, 100% { opacity: 0; }
+	94%, 98% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.field-eyes { transition: none; }
+	.has-field-eyes:focus-within .field-eyes .field-eyes__lids, .has-field-eyes.is-watching .field-eyes .field-eyes__lids { animation: none; }
+}
