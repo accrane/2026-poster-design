@@ -36,6 +36,10 @@ get_header(); ?>
 							<span class="contact-hero__value"><?php echo antispambot( 'info@bellaworksweb.com' ); ?></span>
 						</a>
 					</div>
+					<div class="contact-hero__actions">
+						<?php bellaworks_button( 'Contact Us', home_url( '/lets-do-this/' ), 'brown' ); ?>
+						<?php bellaworks_button( 'Submit Order Here', home_url( '/work-order-request/' ), 'red' ); ?>
+					</div>
 				</div>
 				<div class="page-hero__art-col">
 					<div class="page-hero__art retro-object retro-object--phone">

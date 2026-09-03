@@ -127,6 +127,7 @@
 	}
 	&__line { display: flex; align-items: center; gap: 14px; color: $brown; font-size: 17px; @include tab { font-size: 19px; } .label { width: 22px; color: $red; } &:hover { color: $red; } }
 	&__value { font-weight: 700; }
+	&__actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
 }
 .contact-ctas {
 	&__grid {
