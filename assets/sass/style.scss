@@ -13,6 +13,12 @@ Tags:
 
 @import "normalize";
 @import "bourbon/bourbon";
+
+// Font Awesome Pro 5 (regular + solid webfonts), paths relative to the compiled ./style.css
+$fa-font-path: "assets/sass/web-fonts-with-css/webfonts";
+@import "web-fonts-with-css/scss/fontawesome";
+@import "web-fonts-with-css/scss/fa-regular";
+@import "web-fonts-with-css/scss/fa-solid";
 @import "variables";
 @import "core";
 @import "components";

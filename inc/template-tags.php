@@ -181,7 +181,8 @@ function bellaworks_watermark( $kind, $color, $opacity, $style ) {
 function bellaworks_retro_info( $text, $object = 'rolodex' ) {
 	$object = sanitize_html_class( $object );
 	echo '<div class="retro-info retro-info--' . esc_attr( $object ) . '">';
-	echo '<button type="button" class="retro-info__btn" aria-label="' . esc_attr__( 'What is this?', 'bellaworks' ) . '">i</button>';
+	// Font Awesome Pro 5 regular "info-circle" (FA6 name: fa-regular fa-circle-info).
+	echo '<button type="button" class="retro-info__btn" aria-label="' . esc_attr__( 'What is this?', 'bellaworks' ) . '"><i class="far fa-info-circle" aria-hidden="true"></i></button>';
 	echo '<div class="retro-info__tip" role="tooltip">' . esc_html( $text ) . '</div>';
 	echo '</div>';
 }

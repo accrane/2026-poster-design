@@ -123,18 +123,17 @@
 	&--rolodex    { left: 15.7%; top: 7.9%; }    // 88 / 44 on the 560px hero video
 	&--typewriter { left: 13.5%; top: 11.5%; }   // 70 / 60 on the 520px typewriter
 	&__btn {
-		width: 24px; height: 24px;
-		border-radius: 50%;
-		border: 2px solid $brown;
-		background: $tan;
+		width: 28px; height: 28px;
+		border: 0;
+		background: transparent;
 		color: $brown;
-		font-family: $font_display;
-		font-size: 14px;
+		font-size: 24px;
 		line-height: 1;
 		display: flex; align-items: center; justify-content: center;
 		cursor: help;
 		padding: 0;
-		&:focus-visible { outline: 2px dotted $brown; outline-offset: 3px; }
+		i { display: block; }
+		&:focus-visible { outline: 2px dotted $brown; outline-offset: 3px; border-radius: 50%; }
 	}
 	&__tip {
 		position: absolute;
