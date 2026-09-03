@@ -20,6 +20,17 @@
 	}
 	&__eyebrow { display: flex; align-items: center; gap: 12px; }
 	&__title { font-size: clamp(56px, 7.2vw, 104px); }
+	&__script {
+		display: block;
+		font-family: $font_script;
+		text-transform: none;
+		letter-spacing: 0;
+		line-height: 1;
+		color: $red;
+		font-size: clamp(44px, 5.8vw, 84px);
+		margin-top: 12px;
+		margin-left: 6px;
+	}
 	&__text { max-width: 640px; p + p { margin-top: 1em; } }
 	&__art-col {
 		display: flex; justify-content: center; align-items: center;

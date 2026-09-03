@@ -20,7 +20,13 @@ $bios            = function_exists( 'get_field' ) ? get_field( 'bios' ) : array(
 // row1_title is a textarea: line 1 plain, <strong>…</strong> becomes the red line.
 $title_html = $row1_title ? wp_kses( $row1_title, array( 'strong' => array(), 'br' => array() ) ) : get_the_title();
 $title_html = preg_replace( '/(<br\s*\/?>\s*)+/i', '<br>', $title_html );
-$title_html = str_replace( array( '<strong>', '</strong>' ), array( '<span class="text-red">', '</span>' ), $title_html );
+$title_html = preg_replace_callback( '/<strong>(.*?)<\/strong>/is', function ( $m ) {
+	$t = trim( $m[1] );
+	if ( strtoupper( $t ) === $t ) {
+		$t = ucfirst( strtolower( $t ) );
+	}
+	return '<span class="script page-hero__script">' . $t . '</span>';
+}, $title_html );
 
 // row2_text_left starts with an <h2>; split it from the body so the heading gets the display face.
 $approach_heading = '';

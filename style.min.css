@@ -186,6 +186,7 @@ p{margin:0}
 .page-hero__copy{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:24px}
 .page-hero__eyebrow{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;gap:12px}
 .page-hero__title{font-size:clamp(56px,7.2vw,104px)}
+.page-hero__script{display:block;font-family:"Kaushan Script","Brush Script MT",cursive;text-transform:none;letter-spacing:0;line-height:1;color:#df0118;font-size:clamp(44px,5.8vw,84px);margin-top:12px;margin-left:6px}
 .page-hero__text{max-width:640px}
 .page-hero__text p+p{margin-top:1em}
 .page-hero__art-col{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
