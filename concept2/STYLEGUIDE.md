@@ -89,3 +89,14 @@ Copy comes from the client verbatim. Never invent stats, testimonials, or headin
 - **Team list** `.team`: rows separated by dashed brown rules; photo (4:3, 22px radius, 2px brown border, `grayscale(1) contrast(1.05)`) and Anton name in cols 1–4, bio paragraphs at 17px in cols 5–12.
 - **Closing band** `.closer` (brown): star rule, the homepage tagline with the red highlight, and a large red Book A Call. Use it to end any inner page that has no CTA of its own.
 - **Template pattern**: `page-{slug}.php` reads ACF with `get_field()`, guards every section with `if ( $value )`, and composes devices from `inc/template-tags.php`. Field groups live in `acf-json/`.
+
+## 11. Forms (Gravity Forms)
+
+The plugin's own stylesheets are switched off (`gform_disable_css` in `inc/theme.php`); `assets/sass/_forms.scss` styles every form on the site against Gravity Forms' stable classes, legacy `<ul><li>` and modern `<div>` markup alike.
+
+- Fields: 54px tall, 2px brown border, 12px radius, tan fill, DM Sans 16px; focus turns the border red with an inset red ring. Textareas 180px, resizable. Selects get a brown chevron. On red/brown sections fields go transparent with tan borders.
+- Labels: the site label style (12px, 700, .22em caps); sub-labels (First/Last) 11px sentence case; required marks red; descriptions 14px at 80%.
+- Layout: a 12-column grid with 26/24px gaps; `gfield--width-half/third/quarter` and legacy `gf_left_half`-style classes span columns; name and address complex fields split into two columns from 600px.
+- Submit: `gform_submit_button` is filtered into a real `<button>` carrying `.btn.btn--red.btn--lg`, so it inherits the pill and dotted ring. A plain `<input type=submit>` fallback is styled too.
+- Validation: red 2px summary box, red labels and borders on errored fields, red 14px messages; the confirmation message is Anton in red.
+- Page: `page-lets-do-this.php` puts the form in cols 1–8 with the stamp, address and phone/email in cols 9–12; hero is text only ("The start of something big!" with "big!" in script).

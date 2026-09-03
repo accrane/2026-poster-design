@@ -1,0 +1,162 @@
+// ------------------------------------------------------------------
+// Gravity Forms — retro styling against the plugin's stable classes.
+// Plugin CSS is disabled in inc/theme.php (gform_disable_css), so
+// everything a form needs is here. Works for legacy (<ul><li>) and
+// modern (<div>) markup. Applies to EVERY form on the site.
+// ------------------------------------------------------------------
+
+$form-radius: 12px;
+$form-border: 2px solid $brown;
+
+.gform_wrapper {
+	// reset the legacy list markup
+	ul, ol { list-style: none; margin: 0; padding: 0; }
+	li { margin: 0; }
+	img.gform_ajax_spinner { display: inline-block; margin-left: 12px; }
+
+	// ---- heading ----
+	.gform_heading { margin: 0 0 32px; }
+	.gform_title { @extend .display; font-size: clamp(36px, 4vw, 56px); margin: 0 0 12px; }
+	.gform_description { font-size: 17px; line-height: 1.6; max-width: 640px; @include tab { font-size: 19px; } }
+	.gform_required_legend { font-size: 13px; margin: 0 0 20px; .gfield_required { color: $red; } }
+
+	// ---- field grid ----
+	.gform_fields {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		gap: 26px 24px;
+	}
+	.gfield {
+		grid-column: 1 / -1;
+		display: flex; flex-direction: column; gap: 10px;
+		// Gravity Forms column sizes (modern markup)
+		&.gfield--width-half     { @include tab { grid-column: span 6; } }
+		&.gfield--width-third    { @include tab { grid-column: span 4; } }
+		&.gfield--width-quarter  { @include tab { grid-column: span 3; } }
+		&.gfield--width-two-thirds { @include tab { grid-column: span 8; } }
+		// legacy ready classes
+		&.gf_left_half, &.gf_right_half   { @include tab { grid-column: span 6; } }
+		&.gf_left_third, &.gf_middle_third, &.gf_right_third { @include tab { grid-column: span 4; } }
+		&.gform_hidden, &.gfield_visibility_hidden, &.gform_validation_container { display: none !important; }
+	}
+
+	// ---- labels ----
+	.gfield_label, .gform-field-label, legend.gfield_label {
+		@extend .label;
+		color: $brown;
+		display: block;
+		margin: 0;
+		padding: 0;
+		font-size: 12px;
+		line-height: 1.4;
+		&.gform-field-label--type-sub, &.gfield_label--type-sub { font-size: 11px; opacity: .75; margin-top: 6px; text-transform: none; letter-spacing: .06em; font-weight: 500; }
+	}
+	.gfield_required, .gfield_required_asterisk { color: $red; margin-left: 4px; }
+	.gfield_required_text { display: none; }
+	.gfield_description {
+		font-size: 14px; line-height: 1.5; color: $brown; opacity: .8;
+		margin: 0; padding: 0;
+		&.gfield_validation_message { opacity: 1; }
+	}
+
+	// ---- inputs ----
+	.ginput_container {
+		input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"], input[type="password"], input[type="date"],
+		textarea, select {
+			width: 100%;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0 18px;
+			height: 54px;
+			background: $tan;
+			color: $brown;
+			border: $form-border;
+			border-radius: $form-radius;
+			font-family: $font_body;
+			font-size: 16px;
+			line-height: 1.4;
+			appearance: none;
+			-webkit-appearance: none;
+			transition: box-shadow .15s ease, border-color .15s ease;
+			&::placeholder { color: rgba(43, 11, 10, .45); }
+			&:focus {
+				outline: none;
+				border-color: $red;
+				box-shadow: inset 0 0 0 3px $tan, inset 0 0 0 5px $red; // dotted-ring stand-in
+			}
+		}
+		textarea { height: 180px; min-height: 120px; padding: 14px 18px; resize: vertical; }
+		select {
+			padding-right: 44px;
+			background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232b0b0a' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+			background-repeat: no-repeat;
+			background-position: right 16px center;
+			background-size: 16px;
+		}
+		// dark sections
+		.section--brown &, .section--red & {
+			input, textarea, select { background: transparent; color: $tan; border-color: $tan; &::placeholder { color: rgba(239, 222, 196, .55); } }
+		}
+	}
+
+	// Name / address complex fields: sub inputs sit side by side
+	.ginput_complex {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 16px;
+		@include xs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		> span, > div { display: flex; flex-direction: column-reverse; gap: 6px; }
+		.name_prefix, .name_suffix { @include xs { grid-column: span 1; } }
+		&.ginput_container_address > span, &.ginput_container_address > div { &.address_line_1, &.address_line_2 { grid-column: 1 / -1; } }
+		.gform-field-label, label { margin: 0; }
+	}
+
+	// ---- choices ----
+	.gfield_checkbox, .gfield_radio {
+		display: flex; flex-direction: column; gap: 10px;
+		.gchoice, li { display: flex; align-items: center; gap: 12px; }
+		input { width: 22px; height: 22px; margin: 0; accent-color: $red; flex-shrink: 0; }
+		label { font-family: $font_body; font-size: 16px; font-weight: 500; text-transform: none; letter-spacing: 0; }
+	}
+	.gfield_consent_label { font-size: 15px; }
+
+	// ---- file / captcha ----
+	.ginput_container_fileupload input[type="file"] { font-size: 15px; }
+	.ginput_recaptcha { margin-top: 4px; }
+
+	// ---- footer / submit ----
+	.gform_footer, .gform-footer {
+		margin-top: 36px;
+		padding: 0;
+		display: flex; align-items: center; gap: 16px;
+		.gform_button { @extend .btn; @extend .btn--red; @extend .btn--lg; border: 0; cursor: pointer; span { display: inline; } }
+	}
+	// plain <input type=submit> fallback (if the button filter is removed)
+	input.gform_button {
+		height: 60px; padding: 0 40px; border: 0; border-radius: 999px;
+		background: $red; color: $tan;
+		font-family: $font_body; font-weight: 700; font-size: 14px; letter-spacing: .16em; text-transform: uppercase;
+		outline: 2px dotted $tan; outline-offset: -7px; cursor: pointer;
+	}
+
+	// ---- validation ----
+	.gform_validation_errors {
+		border: $form-border; border-color: $red; border-radius: $form-radius;
+		padding: 16px 18px; margin: 0 0 28px;
+		color: $red; font-weight: 700; font-size: 15px;
+		h2 { font-size: 15px; margin: 0; font-family: $font_body; }
+		.gform_submission_error { margin: 0; }
+		ol { margin: 8px 0 0 18px; list-style: disc; }
+	}
+	.gfield_error {
+		.gfield_label, .gform-field-label { color: $red; }
+		.ginput_container input, .ginput_container textarea, .ginput_container select { border-color: $red; }
+	}
+	.validation_message, .gfield_validation_message { color: $red; font-size: 14px; font-weight: 700; margin: 0; padding: 0; background: none; border: 0; }
+	.gform_confirmation_message {
+		@extend .display;
+		font-size: clamp(36px, 4vw, 56px);
+		color: $red;
+		max-width: 760px;
+	}
+}

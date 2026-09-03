@@ -33,3 +33,24 @@ function bellaworks_menu_fallback( $args = array() ) {
 	}
 	echo '</ul>';
 }
+
+/**
+ * Gravity Forms: drop the plugin stylesheets; forms are styled by the theme
+ * (assets/sass/_forms.scss) against the stable gform_* / gfield_* classes.
+ */
+add_filter( 'gform_disable_css', '__return_true' );
+
+/**
+ * Gravity Forms: keep the submit button a real <button> so it can carry the
+ * pill + dotted ring like every other button on the site.
+ */
+function bellaworks_gform_submit_button( $button, $form ) {
+	$label = ( isset( $form['button']['text'] ) && $form['button']['text'] ) ? $form['button']['text'] : __( 'Submit', 'bellaworks' );
+	$onclick = '';
+	if ( preg_match( "/onclick='([^']*)'/", $button, $m ) ) {
+		$onclick = " onclick='" . $m[1] . "'";
+	}
+	$id = 'gform_submit_button_' . intval( $form['id'] );
+	return '<button type="submit" id="' . esc_attr( $id ) . '" class="gform_button button btn btn--red btn--lg"' . $onclick . '><span>' . esc_html( $label ) . '</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></button>';
+}
+add_filter( 'gform_submit_button', 'bellaworks_gform_submit_button', 10, 2 );
