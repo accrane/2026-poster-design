@@ -1309,7 +1309,8 @@ p{margin:0}
 .section--brown .gform_wrapper .ginput_container input::-ms-input-placeholder,.section--brown .gform_wrapper .ginput_container textarea::-ms-input-placeholder,.section--brown .gform_wrapper .ginput_container select::-ms-input-placeholder,.section--red .gform_wrapper .ginput_container input::-ms-input-placeholder,.section--red .gform_wrapper .ginput_container textarea::-ms-input-placeholder,.section--red .gform_wrapper .ginput_container select::-ms-input-placeholder{color:rgba(239,222,196,0.55)}
 .section--brown .gform_wrapper .ginput_container input::placeholder,.section--brown .gform_wrapper .ginput_container textarea::placeholder,.section--brown .gform_wrapper .ginput_container select::placeholder,.section--red .gform_wrapper .ginput_container input::placeholder,.section--red .gform_wrapper .ginput_container textarea::placeholder,.section--red .gform_wrapper .ginput_container select::placeholder{color:rgba(239,222,196,0.55)}
 .gform_wrapper .ginput_complex{display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:16px}
-.gform_wrapper .ginput_complex>span,.gform_wrapper .ginput_complex>div{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;gap:6px}
+.gform_wrapper .ginput_complex br{display:none}
+.gform_wrapper .ginput_complex>span,.gform_wrapper .ginput_complex>div{display:-webkit-box !important;display:-ms-flexbox !important;display:flex !important;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:6px}
 .gform_wrapper .ginput_complex.ginput_container_address>span.address_line_1,.gform_wrapper .ginput_complex.ginput_container_address>span.address_line_2,.gform_wrapper .ginput_complex.ginput_container_address>div.address_line_1,.gform_wrapper .ginput_complex.ginput_container_address>div.address_line_2{grid-column:1 / -1}
 .gform_wrapper .ginput_complex .gform-field-label,.gform_wrapper .ginput_complex label{margin:0}
 .gform_wrapper .gfield_checkbox,.gform_wrapper .gfield_radio{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:10px}
@@ -1331,7 +1332,7 @@ p{margin:0}
 .gform_wrapper .gfield_error .ginput_container input,.gform_wrapper .gfield_error .ginput_container textarea,.gform_wrapper .gfield_error .ginput_container select{border-color:#df0118}
 .gform_wrapper .validation_message,.gform_wrapper .gfield_validation_message{color:#df0118;font-size:14px;font-weight:700;margin:0;padding:0;background:0;border:0}
 .gform_wrapper .gform_confirmation_message{font-size:clamp(36px,4vw,56px);color:#df0118;max-width:760px}
-.has-field-eyes{position:relative}
+.has-field-eyes{position:relative;display:block}
 .has-field-eyes>input,.has-field-eyes>textarea{position:relative;z-index:1}
 .field-eyes{position:absolute;right:28px;top:0;width:66px;height:34px;z-index:0;pointer-events:none;opacity:0;-webkit-transform:translateY(-30%);transform:translateY(-30%);-webkit-transition:opacity .12s ease,-webkit-transform .35s cubic-bezier(0.34,1.56,0.64,1);transition:opacity .12s ease,-webkit-transform .35s cubic-bezier(0.34,1.56,0.64,1);transition:transform .35s cubic-bezier(0.34,1.56,0.64,1),opacity .12s ease;transition:transform .35s cubic-bezier(0.34,1.56,0.64,1),opacity .12s ease,-webkit-transform .35s cubic-bezier(0.34,1.56,0.64,1)}
 .field-eyes svg{width:100%;height:100%;display:block;overflow:visible}

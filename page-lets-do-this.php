@@ -29,7 +29,11 @@ get_header(); ?>
 			<div class="wrapper inquiry__grid">
 				<div class="inquiry__form">
 					<?php while ( have_posts() ) : the_post(); ?>
-						<?php the_content(); ?>
+						<?php
+						// Render the form shortcode directly: wpautop would wrap the form's
+						// inline spans in <p> and sprinkle <br>, breaking the field layout.
+						echo do_shortcode( get_the_content() ); // phpcs:ignore -- editor content + Gravity Forms output
+						?>
 					<?php endwhile; ?>
 				</div>
 				<aside class="inquiry__aside">

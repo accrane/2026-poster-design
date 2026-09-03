@@ -101,11 +101,12 @@ $form-border: 2px solid $brown;
 
 	// Name / address complex fields: sub inputs sit side by side
 	.ginput_complex {
+		br { display: none; }               // wpautop leftovers, if any
 		display: grid;
 		grid-template-columns: repeat(1, minmax(0, 1fr));
 		gap: 16px;
 		@include xs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-		> span, > div { display: flex; flex-direction: column-reverse; gap: 6px; }
+		> span, > div { display: flex !important; flex-direction: column; gap: 6px; }
 		.name_prefix, .name_suffix { @include xs { grid-column: span 1; } }
 		&.ginput_container_address > span, &.ginput_container_address > div { &.address_line_1, &.address_line_2 { grid-column: 1 / -1; } }
 		.gform-field-label, label { margin: 0; }
@@ -167,6 +168,7 @@ $form-border: 2px solid $brown;
 // ------------------------------------------------------------------
 .has-field-eyes {
 	position: relative;
+	display: block;
 	> input, > textarea { position: relative; z-index: 1; }
 }
 .field-eyes {
