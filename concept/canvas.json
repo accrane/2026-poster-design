@@ -1,0 +1,10 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "title": "Homepage · Desktop", "x": 0, "y": 0, "w": 1440, "h": 2650, "expand": "fit" },
+    { "file": "Mobile.dc.html", "title": "Homepage · Mobile", "x": 1560, "y": 0, "w": 390, "h": 4220, "expand": "fit" }
+  ],
+  "annotations": [
+    { "id": "concept-note", "x": 1560, "y": -170, "w": 380, "text": "Poster-bento concept for bellaworksweb.com\nInspired by the supplied reference: rounded color-block tiles on a dark ground, chunky condensed display type, a script accent, round stamp + speech bubble, icon strip.\nBrand mapping: reference red → Bellaworks blue #3689b4 and navy #223e60, cream tiles, orange #db6e35 for the script + CTA.\nCopy is lifted verbatim from the current homepage." }
+  ],
+  "launch": { "view": "canvas" }
+}

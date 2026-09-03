@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Kaushan+Script&family=DM+Sans:wght@400;500;700&display=swap">
+  <style>
+    body { margin: 0; background: #efdec4; font-family: 'DM Sans', system-ui, sans-serif; color: #2b0b0a; -webkit-font-smoothing: antialiased; }
+    a { color: #df0118; text-decoration: none; } a:hover { color: #b20013; }
+    * { box-sizing: border-box; }
+    .display { font-family: 'Anton', 'Arial Narrow', Impact, sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.005em; line-height: 0.9; margin: 0; }
+    .script { font-family: 'Kaushan Script', 'Brush Script MT', cursive; font-weight: 400; line-height: 1; }
+    .label { font-family: 'DM Sans', system-ui, sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; height: 50px; padding: 0 24px; border-radius: 999px; position: relative; font-family: 'DM Sans', system-ui, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; }
+    .btn::after { content: ""; position: absolute; inset: 5px; border: 2px dotted currentColor; border-radius: 999px; pointer-events: none; }
+    .foot a { color: #efdec4; } .foot a:hover { color: #2b0b0a; }
+    .thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
+  </style>
+</helmet>
+
+<div style="width: 390px; min-height: 5200px; background: #efdec4; display: flex; flex-direction: column;">
+
+  <!-- NAV -->
+  <div style="background: #efdec4; padding: 0 20px; height: 68px; display: flex; align-items: center; justify-content: space-between;">
+    <img src="logo-dark.svg" alt="Bellaworks" style="height: 36px; width: auto; display: block;">
+    <div style="width: 44px; height: 44px; border-radius: 50%; background: #2b0b0a; display: flex; align-items: center; justify-content: center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#efdec4" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16"></path><path d="M4 16h16"></path></svg>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div style="background: #efdec4; padding: 40px 24px 36px 24px; display: flex; flex-direction: column; gap: 26px; position: relative;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#df0118" aria-hidden="true"><path d="M12 1.6l2.9 6.6 7.1.7-5.4 4.8 1.6 7.1L12 17.2l-6.2 3.6 1.6-7.1L2 8.9l7.1-.7z"></path></svg>
+      <div class="label">Charlotte, North Carolina</div>
+    </div>
+    <div>
+      <h1 class="display" style="font-size: 88px; color: #2b0b0a;">We make<br>websites.</h1>
+      <div class="script" style="font-size: 72px; color: #df0118; margin-top: 6px; margin-left: 4px;">Simple.</div>
+    </div>
+    <div style="position: relative; display: flex; justify-content: center;">
+      <img src="mascot.jpg" alt="Bellaworks mascot" style="width: 300px; height: 300px; display: block; mix-blend-mode: multiply;">
+      <div style="position: absolute; top: 0; right: 0; background: #df0118; color: #efdec4; border-radius: 999px; padding: 12px 18px;">
+        <div class="display" style="font-size: 18px; color: #efdec4; text-align: center;">Book<br>a call!</div>
+        <svg width="22" height="18" viewBox="0 0 26 22" style="position: absolute; left: 14px; bottom: -13px;" aria-hidden="true"><path d="M2 0h22L6 22z" fill="#df0118"></path></svg>
+      </div>
+    </div>
+    <a href="#book" class="btn" style="background: #2b0b0a; color: #efdec4;">Book A Call
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+    </a>
+  </div>
+
+  <!-- TAGLINE BAND -->
+  <div style="background: #df0118; color: #efdec4; padding: 44px 24px; display: flex; flex-direction: column; gap: 20px; align-items: center; text-align: center;">
+    <div style="display: flex; align-items: center; gap: 14px; width: 100%;">
+      <div style="flex: 1; border-top: 2px dashed rgba(239,222,196,0.55);"></div>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#efdec4" aria-hidden="true"><path d="M12 1.6l2.9 6.6 7.1.7-5.4 4.8 1.6 7.1L12 17.2l-6.2 3.6 1.6-7.1L2 8.9l7.1-.7z"></path></svg>
+      <div style="flex: 1; border-top: 2px dashed rgba(239,222,196,0.55);"></div>
+    </div>
+    <h2 class="display" style="font-size: 44px; color: #efdec4;">Creating stunning websites that also drive results.</h2>
+    <div class="script" style="font-size: 30px; color: #2b0b0a;">Bellaworks sites are more than just a pretty face.</div>
+    <div style="display: flex; align-items: center; gap: 14px; width: 100%;">
+      <div style="flex: 1; border-top: 2px dashed rgba(239,222,196,0.55);"></div>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#efdec4" aria-hidden="true"><path d="M12 1.6l2.9 6.6 7.1.7-5.4 4.8 1.6 7.1L12 17.2l-6.2 3.6 1.6-7.1L2 8.9l7.1-.7z"></path></svg>
+      <div style="flex: 1; border-top: 2px dashed rgba(239,222,196,0.55);"></div>
+    </div>
+  </div>
+
+  <!-- TECHIES -->
+  <div style="background: #efdec4; padding: 60px 24px; display: flex; flex-direction: column; gap: 26px; align-items: flex-start;">
+    <svg width="170" height="170" viewBox="0 0 300 300" aria-hidden="true" style="display: block; transform: rotate(-8deg); align-self: center;">
+      <defs><path id="ring-m" d="M150,150 m-97,0 a97,97 0 1,1 194,0 a97,97 0 1,1 -194,0"></path></defs>
+      <circle cx="150" cy="150" r="142" fill="none" stroke="#2b0b0a" stroke-width="5"></circle>
+      <circle cx="150" cy="150" r="130" fill="none" stroke="#2b0b0a" stroke-width="2" stroke-dasharray="3 6"></circle>
+      <circle cx="150" cy="150" r="78" fill="none" stroke="#2b0b0a" stroke-width="4"></circle>
+      <text font-family="DM Sans, system-ui, sans-serif" font-weight="700" font-size="21" letter-spacing="5" fill="#2b0b0a"><textPath href="#ring-m">SIMPLE • BEAUTIFUL • SECURE • </textPath></text>
+      <g transform="translate(94.0 115.7) scale(0.1094)"><path d="M916.2,234.4c-11.8-4.6-21.6-.2-26.4,11.6-29.7,72.2-60,145.2-89.5,216.2-11.1-25.2-22.1-50.3-33.2-75.4-21.5-48.9-43.1-97.8-64.8-147.1l-10.3-23.5-11.4,23-.5,1c-.4,1-.7,1.8-1.1,2.6-.8,1.9-1.5,3.6-2.1,5.4-5.9,16.2-11.7,32.4-17.5,48.5-12.9,36-26.3,73.3-39.9,109.8-10.5,27.9-22.5,56-34.2,83.1l-1,2.3c-3.8,8.7-6.1,8.7-7.5,8.6-1.9,0-3.8-.8-7.5-9.5-5.8-13.6-10.9-28.1-15.8-42-4.8-13.8-9.6-27.9-14.2-41.5-9.3-27.5-18.9-55.8-29.7-83.4-15.1-38.4-41-67.5-77.1-86.4-27.4-14.4-57.9-20.8-93.2-19.5-48.7,1.8-87.7,19.6-116.5,52.9,0-22.3,0-44.6,0-66.9,0-32.6,0-65.2,0-97.7s-13.3-43.7-39.6-45.8c-17.1-1.4-34.2-1.1-50.7-.8-6.9.1-14,.3-21,.3l-2,23.8c3.4.6,7.3,1.2,11.1,1.7,22.7,3.2,29.3,10.8,29.3,33.7s0,58.5,0,87.8c0,71.9-.1,146.3.2,219.6.3,53.6,25.3,93.8,72.4,116.1,47.8,22.7,102,28.3,160.9,16.6,34.1-6.8,62.5-20.9,84.5-41.9,15.5-14.8,27.8-33.2,36.9-54.7,5.2,16.6,10.6,33.6,16.4,50.2,3.3,9.5,9,19,16.4,27.4,8.7,9.9,18,12.2,24.2,12.4,9.3.3,18.3-3.6,26.3-11.5,4.7-4.7,8.7-10,11.6-15.5,4.8-9,9.2-18.2,12.9-27.5,15.1-37.5,30.4-75.7,45.2-112.6,6-15.1,12.1-30.1,18.1-45.1,27.7,61.7,54.9,122.4,83.6,186.2l25.4,56.7,10.7-25.7c43-103.7,85.2-205.6,127.5-307.6l4.7-11.3-11.4-4.5ZM222.9,429.2c-.3-9.6-.2-19.4-.2-29,0-4.5,0-9,0-13.5v-12h0c.1-7.6.2-15.5-.2-23.4-1-24.4,7.9-45.7,27.3-65,33-32.8,90.7-43.9,131.4-25.2,24.9,11.4,43.1,29.2,54.1,52.9,27.5,59.3,24.1,115.6-9.9,167.4-19.6,29.9-50.1,47.5-85.8,49.7-36,2.2-71.6-12.1-93-37.2-15.2-17.9-23-39-23.8-64.7Z" fill="#df0118"></path></g>
+    </svg>
+    <h2 class="display" style="font-size: 58px; color: #2b0b0a;">Leave the tech to the <span style="color: #df0118;">techies</span></h2>
+    <p style="font-size: 16.5px; line-height: 1.6; margin: 0; text-wrap: pretty;">Our process is smooth from the get-go. We often work with clients whose main role isn’t managing the website but are all about making it a success. Our pros unite strategy, copywriting, design, and development to level up your web presence. That way, you can spend more time on what you’re most passionate about in your workday.</p>
+    <a href="#book" class="btn" style="background: #df0118; color: #efdec4;">Book A Call
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+    </a>
+  </div>
+
+  <!-- SOLUTIONS -->
+  <div id="services" style="background: #2b0b0a; color: #efdec4; padding: 60px 24px; display: flex; flex-direction: column; gap: 30px;">
+    <div>
+      <h2 class="display" style="font-size: 58px; color: #efdec4;">Our website solutions</h2>
+      <div class="script" style="font-size: 34px; color: #df0118; margin-top: 8px;">(We Got You Covered)</div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-top: 2px dashed rgba(239,222,196,0.35); border-bottom: 2px dashed rgba(239,222,196,0.35);">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 28px 12px; border-right: 2px solid rgba(239,222,196,0.35); border-bottom: 2px solid rgba(239,222,196,0.35);">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#efdec4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>
+        <div class="label" style="text-align: center; color: #efdec4;">Copy<br>Writing</div>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 28px 12px; border-bottom: 2px solid rgba(239,222,196,0.35);">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#efdec4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18"></path><path d="M9 14l-2 2 2 2"></path><path d="M15 14l2 2-2 2"></path></svg>
+        <div class="label" style="text-align: center; color: #efdec4;">Design<br>+ Dev</div>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 28px 12px; border-right: 2px solid rgba(239,222,196,0.35);">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#efdec4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="1.5"></rect><rect x="3" y="14" width="18" height="6" rx="1.5"></rect><path d="M7 7h.01"></path><path d="M7 17h.01"></path></svg>
+        <div class="label" style="text-align: center; color: #efdec4;">Website<br>Hosting</div>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 28px 12px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#efdec4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l6 4V6L6 10H4a1 1 0 0 0-1 1z"></path><path d="M16 9a4 4 0 0 1 0 6"></path><path d="M18.5 6.5a8 8 0 0 1 0 11"></path></svg>
+        <div class="label" style="text-align: center; color: #efdec4;">Digital<br>Marketing</div>
+      </div>
+    </div>
+    <a href="#services-page" class="btn" style="background: #efdec4; color: #2b0b0a;">Explore Our Services
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+    </a>
+  </div>
+
+  <!-- WORK -->
+  <div id="work" style="background: #efdec4; padding: 60px 24px; display: flex; flex-direction: column; gap: 26px;">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between;">
+      <h2 class="display" style="font-size: 76px; color: #2b0b0a;">Our<br>work</h2>
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="#df0118" aria-hidden="true" style="margin-bottom: 10px;"><path d="M12 1.6l2.9 6.6 7.1.7-5.4 4.8 1.6 7.1L12 17.2l-6.2 3.6 1.6-7.1L2 8.9l7.1-.7z"></path></svg>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); grid-template-rows: 220px 220px 220px 220px 220px 220px 220px 220px 220px; gap: 16px;">
+      <div style="border-radius: 18px; overflow: hidden; border: 2px solid #2b0b0a;"><img src="work-nourish-up.jpg" alt="Nourish Up website" class="thumb"></div>
+      <div style="border-radius: 18px; overflow: hidden; border: 2px solid #2b0b0a;"><img src="work-usnwc.jpg" alt="U.S. National Whitewater Center website" class="thumb"></div>
+      <div style="border-radius: 18px; overflow: hidden; border: 2px solid #2b0b0a;"><img src="work-colony.jpg" alt="Colony Family Offices website" class="thumb"></div>
+      <div style="border-radius: 18px; overflow: hidden; border: 2px solid #2b0b0a;"><img src="work-steelfab.jpg" alt="SteelFab website" class="thumb"></div>
+      <div style="border-radius: 18px; overflow: hidden; border: 2px solid #2b0b0a;"><img src="work-clearview.jpg" alt="Clearview website" class="thumb"></div>
+      <div style="border-radius: 18px; overflow: hidden; border: 2px solid #2b0b0a;"><img src="work-neatbooks.jpg" alt="NeatBooks website" class="thumb"></div>
+      <div style="border-radius: 18px; overflow: hidden; border: 2px solid #2b0b0a;"><img src="work-modern-lighting.jpg" alt="Modern Lighting website" class="thumb"></div>
+      <div style="border-radius: 18px; overflow: hidden; border: 2px solid #2b0b0a;"><img src="work-fletcher.jpg" alt="Fletcher website" class="thumb"></div>
+      <div style="border-radius: 18px; overflow: hidden; border: 2px solid #2b0b0a;"><img src="work-friends.jpg" alt="Friends website" class="thumb"></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="about" style="background: #df0118; color: #efdec4; padding: 60px 24px; display: flex; flex-direction: column; gap: 26px;">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between;">
+      <h2 class="display" style="font-size: 76px; color: #efdec4;">About<br>us</h2>
+      <svg width="120" height="120" viewBox="0 0 180 180" aria-hidden="true" style="display: block; transform: rotate(-10deg);">
+        <polygon points="90.0,0.0 102.2,13.0 117.8,4.4 125.4,20.5 142.9,17.2 145.2,34.8 162.8,37.1 159.5,54.6 175.6,62.2 167.0,77.8 180.0,90.0 167.0,102.2 175.6,117.8 159.5,125.4 162.8,142.9 145.2,145.2 142.9,162.8 125.4,159.5 117.8,175.6 102.2,167.0 90.0,180.0 77.8,167.0 62.2,175.6 54.6,159.5 37.1,162.8 34.8,145.2 17.2,142.9 20.5,125.4 4.4,117.8 13.0,102.2 0.0,90.0 13.0,77.8 4.4,62.2 20.5,54.6 17.2,37.1 34.8,34.8 37.1,17.2 54.6,20.5 62.2,4.4 77.8,13.0" fill="#2b0b0a"></polygon><circle cx="90" cy="90" r="70" fill="none" stroke="#efdec4" stroke-width="2" stroke-dasharray="2 4"></circle>
+        <text x="90" y="92" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="54" fill="#efdec4">15+</text>
+        <text x="90" y="120" text-anchor="middle" font-family="DM Sans, system-ui, sans-serif" font-weight="700" font-size="14" letter-spacing="4" fill="#efdec4">YEARS</text>
+      </svg>
+    </div>
+    <p style="font-size: 16.5px; line-height: 1.6; margin: 0; text-wrap: pretty;">Bellaworks opened its doors over 15 years ago to build user-friendly, beautiful “Bella” websites that drive business success. As a Charlotte, NC based web design and website development company, we carefully craft sites in-house and offer hosting and support to keep them running smoothly. With strategy at the forefront, we’ve proudly helped hundreds of businesses untangle a tricky web where aesthetics meets function and win online.</p>
+    <a href="#about-page" class="btn" style="background: #efdec4; color: #2b0b0a; align-self: flex-start;">Get To Know Us
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+    </a>
+  </div>
+
+  <!-- STEPS -->
+  <div style="background: #2b0b0a; color: #efdec4; padding: 60px 24px; display: flex; flex-direction: column; gap: 34px;">
+    <div>
+      <div class="script" style="font-size: 36px; color: #df0118;">Get Started in</div>
+      <h2 class="display" style="font-size: 58px; color: #efdec4; margin-top: 4px;">Three easy steps</h2>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 26px;">
+      <div style="display: flex; align-items: center; gap: 18px;">
+        <svg width="96" height="96" viewBox="0 0 140 140" aria-hidden="true" style="display: block; flex-shrink: 0;">
+          <polygon points="70.0,0.0 81.7,11.2 96.8,5.3 103.3,20.1 119.5,20.5 119.9,36.7 134.7,43.2 128.8,58.3 140.0,70.0 128.8,81.7 134.7,96.8 119.9,103.3 119.5,119.5 103.3,119.9 96.8,134.7 81.7,128.8 70.0,140.0 58.3,128.8 43.2,134.7 36.7,119.9 20.5,119.5 20.1,103.3 5.3,96.8 11.2,81.7 0.0,70.0 11.2,58.3 5.3,43.2 20.1,36.7 20.5,20.5 36.7,20.1 43.2,5.3 58.3,11.2" fill="#df0118"></polygon><circle cx="70" cy="70" r="53" fill="none" stroke="#efdec4" stroke-width="1.8" stroke-dasharray="2 4"></circle>
+          <text x="70" y="86" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="52" fill="#efdec4">01</text>
+        </svg>
+        <p style="font-size: 16px; line-height: 1.5; margin: 0;"><strong style="font-weight: 700;">Connect with us</strong> and dive into your website needs.</p>
+      </div>
+      <div style="display: flex; align-items: center; gap: 18px;">
+        <svg width="96" height="96" viewBox="0 0 140 140" aria-hidden="true" style="display: block; flex-shrink: 0;">
+          <polygon points="70.0,0.0 81.7,11.2 96.8,5.3 103.3,20.1 119.5,20.5 119.9,36.7 134.7,43.2 128.8,58.3 140.0,70.0 128.8,81.7 134.7,96.8 119.9,103.3 119.5,119.5 103.3,119.9 96.8,134.7 81.7,128.8 70.0,140.0 58.3,128.8 43.2,134.7 36.7,119.9 20.5,119.5 20.1,103.3 5.3,96.8 11.2,81.7 0.0,70.0 11.2,58.3 5.3,43.2 20.1,36.7 20.5,20.5 36.7,20.1 43.2,5.3 58.3,11.2" fill="#df0118"></polygon><circle cx="70" cy="70" r="53" fill="none" stroke="#efdec4" stroke-width="1.8" stroke-dasharray="2 4"></circle>
+          <text x="70" y="86" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="52" fill="#efdec4">02</text>
+        </svg>
+        <p style="font-size: 16px; line-height: 1.5; margin: 0;"><strong style="font-weight: 700;">Receive a proposal</strong> for your business goals</p>
+      </div>
+      <div style="display: flex; align-items: center; gap: 18px;">
+        <svg width="96" height="96" viewBox="0 0 140 140" aria-hidden="true" style="display: block; flex-shrink: 0;">
+          <polygon points="70.0,0.0 81.7,11.2 96.8,5.3 103.3,20.1 119.5,20.5 119.9,36.7 134.7,43.2 128.8,58.3 140.0,70.0 128.8,81.7 134.7,96.8 119.9,103.3 119.5,119.5 103.3,119.9 96.8,134.7 81.7,128.8 70.0,140.0 58.3,128.8 43.2,134.7 36.7,119.9 20.5,119.5 20.1,103.3 5.3,96.8 11.2,81.7 0.0,70.0 11.2,58.3 5.3,43.2 20.1,36.7 20.5,20.5 36.7,20.1 43.2,5.3 58.3,11.2" fill="#df0118"></polygon><circle cx="70" cy="70" r="53" fill="none" stroke="#efdec4" stroke-width="1.8" stroke-dasharray="2 4"></circle>
+          <text x="70" y="86" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="52" fill="#efdec4">03</text>
+        </svg>
+        <p style="font-size: 16px; line-height: 1.5; margin: 0;"><strong style="font-weight: 700;">Proudly share</strong> your website with the world and focus on what you enjoy</p>
+      </div>
+    </div>
+    <a href="#book" class="btn" style="background: #df0118; color: #efdec4; width: 100%;">Book A Call
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="foot" id="contact" style="background: #df0118; color: #efdec4; padding: 50px 24px 30px 24px; display: flex; flex-direction: column; gap: 24px;">
+    <img src="logo-cream.svg" alt="Bellaworks" style="height: 42px; width: auto; display: block; align-self: flex-start; margin: 0;">
+    <p style="margin: 0; font-size: 15px; line-height: 1.7;">Bellaworks Web Design<br>436 E 36th Street<br>Charlotte, North Carolina 28205<br>P <a href="tel:+17043750831">704.375.0831</a><br>E info@bellaworksweb.com</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 14px 24px;">
+      <a href="#about" class="label">About</a>
+      <a href="#services" class="label">Services</a>
+      <a href="#work" class="label">Work</a>
+      <a href="#news" class="label">News</a>
+      <a href="#contact" class="label">Contact</a>
+    </div>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 14px; border-top: 2px dashed rgba(239,222,196,0.55); padding-top: 20px;">
+      <span class="label">Charlotte</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#2b0b0a" aria-hidden="true"><path d="M12 1.6l2.9 6.6 7.1.7-5.4 4.8 1.6 7.1L12 17.2l-6.2 3.6 1.6-7.1L2 8.9l7.1-.7z"></path></svg>
+      <span class="label">North Carolina</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
