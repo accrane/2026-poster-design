@@ -1,0 +1,49 @@
+// ------------------------------------------------------------------
+// Tokens — from concept2/STYLEGUIDE.md. Three colors, three fonts.
+// ------------------------------------------------------------------
+
+$brown: #2b0b0a;
+$red:   #df0118;
+$tan:   #efdec4;
+$red-hover: #b20013;
+$tan-55:   rgba(239, 222, 196, 0.55);
+$tan-35:   rgba(239, 222, 196, 0.35);
+$brown-35: rgba(43, 11, 10, 0.35);
+
+$font_display: 'Anton', 'Arial Narrow', Impact, sans-serif;
+$font_script:  'Kaushan Script', 'Brush Script MT', cursive;
+$font_body:    'DM Sans', system-ui, sans-serif;
+
+$wrapper: 1240px;
+$gutter: 40px;
+$section-y: 110px;
+$nav-h: 88px;
+
+// Breakpoints — Bellaworks standard (min-width)
+$portrait: 480px;
+$xswidth: 600px;
+$tabwidth: 820px;
+$midwidth: 960px;
+$deskwidth: 1200px;
+$xxl: 1300px;
+
+@mixin xxs { @media (min-width: $portrait) { @content; } }
+@mixin xs { @media (min-width: $xswidth) { @content; } }
+@mixin tab { @media (min-width: $tabwidth) { @content; } }
+@mixin mid { @media (min-width: $midwidth) { @content; } }
+@mixin desk { @media (min-width: $deskwidth) { @content; } }
+@mixin xxl { @media (min-width: $xxl) { @content; } }
+@mixin min($width) { @media screen and (min-width: $width) { @content; } }
+@mixin max($width) { @media screen and (max-width: $width) { @content; } }
+
+@mixin font-size($sizeValue: 1) {
+	font-size: ($sizeValue * 16) * 1px;
+	font-size: $sizeValue * 1rem;
+}
+
+@mixin clearfix() {
+	content: "";
+	display: table;
+	table-layout: fixed;
+	clear: both;
+}

@@ -1,0 +1,21 @@
+/*!
+Theme Name: Bellaworks 2026
+Theme URI: https://bellaworksweb.com/
+Author: Bellaworksweb
+Author URI: https://bellaworksweb.com/
+Description: Bellaworks 2026 site — retro poster system. WPGulp + Sass + ACF.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: bellaworks
+Tags:
+*/
+
+@import "normalize";
+@import "bourbon/bourbon";
+@import "variables";
+@import "core";
+@import "components";
+@import "header";
+@import "footer";
+@import "home";

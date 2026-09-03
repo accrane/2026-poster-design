@@ -1,0 +1,144 @@
+// ------------------------------------------------------------------
+// Homepage sections (front-page.php)
+// ------------------------------------------------------------------
+
+// ---- Hero ----
+.hero {
+	padding: 40px 0 36px;
+	z-index: 5;                      // pinned: must sit above later sections
+	@include mid { padding: 72px 0 64px; }
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 32px;
+		align-items: center;
+		@include mid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: $gutter; }
+	}
+	&__copy {
+		display: flex; flex-direction: column; gap: 26px;
+		position: relative; z-index: 3;   // headline exits in front of the video
+		@include mid { grid-column: 1 / 8; gap: 34px; }
+	}
+	&__eyebrow { display: flex; align-items: center; gap: 12px; }
+	&__title {
+		font-size: clamp(72px, 11.4vw, 164px);
+		span { display: block; }
+	}
+	&__script {
+		font-size: clamp(56px, 9.2vw, 132px);
+		color: $red;
+		margin-top: 10px;
+		margin-left: 8px;
+		transform-origin: left center;
+	}
+	&__actions { display: flex; align-items: center; gap: 26px; }
+
+	&__art-col {
+		display: flex; justify-content: center; align-items: center;
+		@include mid { grid-column: 8 / 13; }
+	}
+	&__art { position: relative; width: 100%; max-width: 560px; }
+	&__video { width: 100%; height: auto; display: block; aspect-ratio: 1 / 1; }
+
+	&__vertical {
+		display: none;
+		@include desk {
+			display: block;
+			position: absolute;
+			right: 34px; top: 50%;
+			transform: translateY(-50%) rotate(180deg);
+			writing-mode: vertical-rl;
+			font-size: 11px;
+			color: $brown;
+		}
+	}
+	.hero-l1, .hero-l2, .hero-simple { will-change: transform; }
+}
+
+// ---- Tagline band ----
+.band {
+	padding: 44px 0;
+	@include tab { padding: 64px 0; }
+	&__inner { display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
+	&__title { font-size: clamp(36px, 5vw, 72px); max-width: 1040px; }
+	&__sub { font-size: 30px; color: $brown; @include tab { font-size: 44px; } }
+}
+
+// ---- Techies ----
+.techies {
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 30px;
+		align-items: center;
+		@include mid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: $gutter; }
+	}
+	&__stamp {
+		display: flex; justify-content: center;
+		.stamp { width: 200px; height: 200px; @include mid { width: 300px; height: 300px; } }
+		@include mid { grid-column: 1 / 5; }
+	}
+	&__copy {
+		display: flex; flex-direction: column; gap: 28px; align-items: flex-start;
+		p { max-width: 720px; }
+		@include mid { grid-column: 5 / 13; }
+	}
+}
+
+// ---- Solutions ----
+.solutions {
+	.wrapper { display: flex; flex-direction: column; gap: 36px; @include tab { gap: 56px; } }
+	&__head {
+		display: flex; flex-direction: column; gap: 10px;
+		@include tab { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: 40px; }
+	}
+	&__script { font-size: clamp(30px, 3.6vw, 52px); color: $red; padding-bottom: 8px; }
+	&__cta { display: flex; justify-content: center; }
+	.icon-strip .label { color: $tan; }
+}
+
+// ---- Work ----
+.work {
+	.wrapper { display: flex; flex-direction: column; gap: 26px; @include tab { gap: 48px; } }
+	&__head { display: flex; align-items: flex-end; justify-content: space-between; .star { margin-bottom: 14px; } }
+}
+
+// ---- About ----
+.about {
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 26px;
+		align-items: center;
+		@include mid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: $gutter; }
+	}
+	&__lead {
+		display: flex; flex-direction: column; gap: 30px; align-items: flex-start;
+		@include mid { grid-column: 1 / 6; }
+	}
+	&__copy {
+		display: flex; flex-direction: column; gap: 30px; align-items: flex-start;
+		p { font-size: 17px; @include tab { font-size: 20px; } }
+		@include mid { grid-column: 6 / 13; }
+	}
+}
+
+// ---- Steps ----
+.steps {
+	&__inner { display: flex; flex-direction: column; gap: 34px; align-items: center; @include tab { gap: 60px; } }
+	&__head { text-align: center; }
+	&__script { font-size: 36px; color: $red; @include tab { font-size: 52px; } }
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 26px;
+		width: 100%;
+		@include tab { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+	}
+	&__item {
+		display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center;
+		p { font-size: 18px; line-height: 1.5; max-width: 300px; }
+		strong { font-weight: 700; }
+	}
+}
