@@ -108,4 +108,24 @@ jQuery(document).ready(function ($) {
 		}, { threshold: 0.4 });
 		icons.forEach(function (svg) { io.observe(svg); });
 	})();
+	/* ---------- Primary menu dropdowns ----------
+	   Hover / keyboard focus is handled in CSS. On touch screens the first
+	   tap on a parent opens its panel instead of following the link. */
+	$('.site-nav .menu-item-has-children > a').attr('aria-haspopup', 'true').attr('aria-expanded', 'false');
+	$(document).on('click', '.site-nav .menu-item-has-children > a', function (e) {
+		var coarse = window.matchMedia && window.matchMedia('(hover: none)').matches;
+		var $li = $(this).parent();
+		if (!coarse || $(window).width() < 960 || $li.hasClass('is-open')) { return; }
+		e.preventDefault();
+		$('.site-nav .is-open').not($li).removeClass('is-open').children('a').attr('aria-expanded', 'false');
+		$li.addClass('is-open');
+		$(this).attr('aria-expanded', 'true');
+	});
+	$(document).on('click', function (e) {
+		if (!$(e.target).closest('.site-nav').length) {
+			$('.site-nav .is-open').removeClass('is-open').children('a').attr('aria-expanded', 'false');
+		}
+	}).on('keydown', function (e) {
+		if (e.key === 'Escape') { $('.site-nav .is-open').removeClass('is-open').children('a').attr('aria-expanded', 'false'); }
+	});
 });

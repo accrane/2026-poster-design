@@ -29,7 +29,7 @@
 					'container'      => false,
 					'menu_class'     => 'site-nav__links',
 					'fallback_cb'    => 'bellaworks_menu_fallback',
-					'depth'          => 1,
+					'depth'          => 2,
 				) );
 				bellaworks_button( 'Book A Call', home_url( '/lets-do-this/' ), 'red', 'sm', false );
 				?>

@@ -619,11 +619,11 @@ html { scroll-behavior: smooth; scroll-padding-top: $nav-h + 24px; }
 	display: flex; align-items: center;
 	.page-hero__script { font-size: clamp(30px, 3.6vw, 52px); margin-top: 16px; line-height: 1.15; }
 	&__actions { display: flex; flex-wrap: wrap; gap: 16px 22px; align-items: center; }
-	&__search {
-		display: flex; flex-direction: column; gap: 10px;
-		max-width: 480px; width: 100%;
-		margin-top: 8px;
-	}
+	.site-search { margin-top: 8px; }
+}
+.site-search {
+	display: flex; flex-direction: column; gap: 10px;
+	max-width: 480px; width: 100%;
 	&__field {
 		display: flex; align-items: stretch;
 		border: 2px solid $brown; border-radius: 12px;
@@ -648,3 +648,136 @@ html { scroll-behavior: smooth; scroll-padding-top: $nav-h + 24px; }
 	}
 }
 .retro-info--crank { left: 24%; top: 9%; }   // just outside the top-left corner of the door frame
+
+// ---- News listing, archives, search ----
+.news-index {
+	&__inner { display: flex; flex-direction: column; gap: 36px; @include tab { gap: 48px; } }
+	&__head { align-items: end; }
+	&__search { @include mid { justify-content: flex-end; } .site-search { max-width: 420px; } }
+	&__filters {
+		display: flex; flex-wrap: wrap; align-items: center; gap: 12px 26px;
+		border-top: 2px dashed $brown-35; border-bottom: 2px dashed $brown-35;
+		padding: 16px 0;
+		&-label { color: $red; margin-right: 6px; }
+		a { color: $brown; padding-bottom: 3px; border-bottom: 2px dotted transparent; transition: color 180ms ease, border-color 180ms ease; }
+		a:hover, a:focus-visible, a.is-active { color: $red; border-bottom-color: $red; }
+	}
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 36px 24px;
+		@include xs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		@include mid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px $gutter; }
+	}
+}
+// cards on tan (the brown "more news" band keeps its tan text)
+.news-card {
+	&__body { display: flex; flex-direction: column; gap: 10px; }
+	&__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0; > * + *::before { content: "\2022"; color: $red; margin: 0 10px; } }
+	&__excerpt { font-size: 16px; line-height: 1.55; opacity: 0.85; }
+	&__thumb--empty { display: flex; align-items: center; justify-content: center; .star { opacity: 0.6; } }
+	&--feature {
+		@include mid {
+			grid-column: 1 / -1;
+			display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: $gutter; align-items: center;
+			.news-card__thumb { grid-column: 1 / 8; aspect-ratio: 16 / 10; }
+			.news-card__body { grid-column: 8 / 13; gap: 14px; }
+			.news-card__title { font-size: clamp(32px, 3.6vw, 48px); }
+			.news-card__excerpt { font-size: 18px; }
+		}
+	}
+}
+.section--tan .news-card {
+	color: $brown;
+	.news-card__thumb { border-color: $brown; background: $tan; }
+	.news-card__date, .news-card__cat, .news-card__type { color: $brown; opacity: 0.75; }
+	.news-card__type { color: $red; opacity: 1; }
+	&:hover, &:focus-visible { color: $brown; .news-card__title { color: $red; } }
+}
+.pager {
+	display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px;
+	border-top: 2px dashed $brown-35; padding-top: 32px;
+	a, span { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 44px; padding: 0 14px; border-radius: 999px; border: 2px solid $brown; color: $brown; font-family: $font_body; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; transition: background-color 180ms ease, color 180ms ease; }
+	a:hover, a:focus-visible { background: $brown; color: $tan; }
+	.current { background: $red; border-color: $red; color: $tan; }
+	.dots { border-color: transparent; }
+	svg { width: 16px; height: 16px; }
+	&__flip { display: inline-flex; transform: rotate(180deg); }
+	.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+}
+.search-results {
+	&__count { color: $red; }
+	.page-hero__title .text-red { display: block; margin-top: 8px; font-size: 0.72em; word-break: break-word; }
+	&__empty { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; padding-top: 8px; h2 { font-size: clamp(36px, 4.6vw, 64px); } p { font-size: 18px; } }
+	&__links { display: flex; flex-wrap: wrap; gap: 14px 18px; }
+}
+
+// ---- Case studies: listing ----
+.cases {
+	&__inner { display: flex; flex-direction: column; gap: 40px; @include tab { gap: 56px; } }
+	&__list { display: flex; flex-direction: column; gap: 40px; border-top: 2px dashed $brown-35; padding-top: 40px; @include tab { gap: 56px; padding-top: 56px; } }
+	&__empty { font-size: 19px; }
+}
+.retro-info--casefile { left: 11%; top: 17%; }   // outside the folder tab
+.case-card {
+	display: grid; gap: 22px; color: $brown; text-decoration: none;
+	@include mid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: $gutter; align-items: center; }
+	&__thumb { display: block; aspect-ratio: 16 / 10; @include mid { grid-column: 1 / 8; } img { transition: transform 320ms ease; } }
+	&__body { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; @include mid { grid-column: 8 / 13; } }
+	&__meta { display: flex; flex-wrap: wrap; gap: 4px 0; > * + *::before { content: "\2022"; color: $red; margin: 0 10px; } }
+	&__eyebrow { color: $red; }
+	&__title { font-size: clamp(32px, 4vw, 56px); transition: color 180ms ease; }
+	&__summary { font-size: 18px; line-height: 1.6; }
+	&__stats { display: flex; flex-wrap: wrap; gap: 18px 28px; border-top: 2px dashed $brown-35; padding-top: 16px; width: 100%; }
+	&__stat { display: flex; flex-direction: column; gap: 4px; flex: 1 1 110px; min-width: 110px; max-width: 170px; .display { font-size: 32px; color: $red; } .label { font-size: 10px; line-height: 1.4; } }
+	&__more { display: inline-flex; align-items: center; gap: 10px; color: $brown; padding-bottom: 4px; border-bottom: 2px dotted transparent; transition: border-color 180ms ease, color 180ms ease; svg { width: 16px; height: 16px; transition: transform 180ms ease; } }
+	&:hover, &:focus-visible { color: $brown; .case-card__title { color: $red; } .case-card__thumb img { transform: scale(1.04); } .case-card__more { color: $red; border-bottom-color: $red; svg { transform: translateX(4px); } } }
+}
+
+// ---- Case studies: single ----
+.case-hero {
+	&__inner { display: flex; flex-direction: column; gap: 40px; @include tab { gap: 56px; } }
+	&__sep { color: $red; }
+	&__summary { font-size: clamp(26px, 3vw, 40px); color: $red; line-height: 1.15; max-width: 640px; }
+	&__meta-col { @include mid { align-self: end; justify-content: flex-end; } }
+	&__banner { aspect-ratio: 21 / 9; @include max(819px) { aspect-ratio: 16 / 9; } img { width: 100%; height: 100%; object-fit: cover; object-position: top; } }
+}
+.case-meta {
+	margin: 0; width: 100%; max-width: 380px;
+	display: flex; flex-direction: column;
+	border-top: 2px dashed $brown-35;
+	> div { display: grid; grid-template-columns: 90px 1fr; gap: 16px; align-items: baseline; padding: 12px 0; border-bottom: 2px dashed $brown-35; }
+	dt { color: $red; }
+	dd { margin: 0; font-size: 16px; font-weight: 500; a { color: $brown; text-decoration: underline; text-underline-offset: 4px; &:hover { color: $red; } } }
+}
+.case-stats {
+	padding: 60px 0; @include tab { padding: 80px 0; }
+	&__grid { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 28px; text-align: center;
+		@include xs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		@include tab { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: $gutter; }
+		&--4 { @include tab { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+		&--2 { @include tab { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+		&--1 { @include tab { grid-template-columns: repeat(1, minmax(0, 1fr)); } }
+	}
+	&__item { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0 12px; & + & { @include tab { border-left: 2px dashed $tan-55; } } .section--tan & + & { @include tab { border-left-color: $brown-35; } } }
+	&__value { font-size: clamp(48px, 7vw, 96px); line-height: 0.9; }
+	&__label { max-width: 220px; line-height: 1.5; }
+}
+.case-section {
+	&__grid { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 24px; align-items: start; @include mid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: $gutter; } }
+	&__head { display: flex; flex-direction: column; gap: 18px; @include mid { grid-column: 1 / 5; position: sticky; top: $nav-h + 40px; } h2 { font-size: clamp(40px, 4.6vw, 64px); } }
+	&__body { @include mid { grid-column: 5 / 13; } max-width: 760px; }
+	.section--red &, .section--brown & { .prose a { color: $tan; } .prose ul li::before { background: $tan; } .prose ol li::before { color: $tan; } }
+}
+.case-gallery {
+	display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 24px; margin-top: 40px;
+	@include xs { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }   // 1, 2 or 3 tiles fill the row
+	@include tab { margin-top: 56px; gap: $gutter; }
+	&__item { aspect-ratio: 4 / 3; img { width: 100%; height: 100%; object-fit: cover; object-position: top; } .section--red &, .section--brown & { border-color: $tan; } }
+}
+.case-quote {
+	&__inner { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 28px; align-items: center; @include mid { grid-template-columns: 180px 1fr; gap: 56px; } }
+	.stamp { width: 130px; height: 130px; @include tab { width: 150px; height: 150px; } .section--brown &, .section--red & { circle, text { stroke: $tan; } text { fill: $tan; stroke: none; } } }
+	&__text { margin: 0; display: flex; flex-direction: column; gap: 18px; max-width: 860px; p { font-size: 20px; line-height: 1.6; @include tab { font-size: 24px; } } cite { font-style: normal; } }
+}
+.case-closer { &__link a { display: inline-flex; align-items: center; gap: 10px; color: $tan; padding-bottom: 4px; border-bottom: 2px dotted transparent; &:hover { border-bottom-color: $tan; } svg { width: 16px; height: 16px; } } .section & { .case-closer__link a, .case-closer__link a:hover { color: $tan; } } }

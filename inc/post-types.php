@@ -26,6 +26,16 @@ function js_custom_init() {
         'menu_icon' => 'dashicons-groups',
         'supports'  => array('title','editor','excerpt','thumbnail')
       ),
+      // Case studies: singles at /case-study/{slug}/, listed on the /case-studies/ page.
+      array(
+        'post_type' => 'case_study',
+        'menu_name' => 'Case Studies',
+        'plural'    => 'Case Studies',
+        'single'    => 'Case Study',
+        'menu_icon' => 'dashicons-media-document',
+        'supports'  => array('title','thumbnail'),
+        'rewrite'   => array('slug' => 'case-study')
+      ),
     );
     
     if($post_types) {
@@ -66,7 +76,7 @@ function js_custom_init() {
                     'show_in_menu' => true, 
                     'show_in_rest' => true,
                     'query_var' => true,
-                    'rewrite' => true,
+                    'rewrite' => ( isset($p['rewrite']) && $p['rewrite'] ) ? $p['rewrite'] : true,
                     'capability_type' => 'post',
                     'has_archive' => false, 
                     'hierarchical' => false, // 'false' acts like posts 'true' acts like pages

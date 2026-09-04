@@ -1,0 +1,32 @@
+{
+    "key": "group_bw_case_study",
+    "title": "Case Study",
+    "fields": [
+        { "key": "field_bw_cs_tab_overview", "label": "Overview", "name": "", "type": "tab", "placement": "top", "endpoint": 0 },
+        { "key": "field_bw_cs_client", "label": "Client", "name": "client", "type": "text", "instructions": "Organization name as it should read on the page." },
+        { "key": "field_bw_cs_industry", "label": "Industry", "name": "industry", "type": "text", "instructions": "e.g. Community Organization, Financial Services." },
+        { "key": "field_bw_cs_summary", "label": "Summary", "name": "summary", "type": "textarea", "instructions": "One or two sentences. Shows under the title and on the listing card.", "rows": 3, "new_lines": "" },
+        { "key": "field_bw_cs_website_url", "label": "Website URL", "name": "website_url", "type": "url" },
+        { "key": "field_bw_cs_hero_image", "label": "Hero Image", "name": "hero_image", "type": "image", "instructions": "Wide screenshot or photo for the top of the page. Falls back to the featured image.", "return_format": "array", "preview_size": "medium", "library": "all" },
+        { "key": "field_bw_cs_services", "label": "Services", "name": "services", "type": "relationship", "instructions": "Which services this project used.", "post_type": [ "service" ], "filters": [ "search" ], "return_format": "id", "min": 0, "max": 0 },
+        { "key": "field_bw_cs_project", "label": "Related Project", "name": "project", "type": "post_object", "instructions": "The matching entry under Work, if there is one.", "post_type": [ "portfolio" ], "allow_null": 1, "return_format": "id" },
+        { "key": "field_bw_cs_tab_story", "label": "Story", "name": "", "type": "tab", "placement": "top", "endpoint": 0 },
+        { "key": "field_bw_cs_challenge", "label": "The Challenge", "name": "challenge", "type": "wysiwyg", "tabs": "all", "toolbar": "basic", "media_upload": 0 },
+        { "key": "field_bw_cs_approach", "label": "What We Did", "name": "approach", "type": "wysiwyg", "tabs": "all", "toolbar": "basic", "media_upload": 0 },
+        { "key": "field_bw_cs_results", "label": "The Results", "name": "results", "type": "wysiwyg", "tabs": "all", "toolbar": "basic", "media_upload": 0 },
+        { "key": "field_bw_cs_stats", "label": "Stats", "name": "stats", "type": "repeater", "instructions": "Up to four short numbers or facts. Keep the value to a few characters.", "layout": "table", "max": 4, "button_label": "Add stat",
+          "sub_fields": [
+            { "key": "field_bw_cs_stat_value", "label": "Value", "name": "value", "type": "text", "wrapper": { "width": "35" } },
+            { "key": "field_bw_cs_stat_label", "label": "Label", "name": "label", "type": "text", "wrapper": { "width": "65" } }
+          ] },
+        { "key": "field_bw_cs_tab_proof", "label": "Proof", "name": "", "type": "tab", "placement": "top", "endpoint": 0 },
+        { "key": "field_bw_cs_quote", "label": "Client Quote", "name": "quote", "type": "textarea", "rows": 5, "new_lines": "" },
+        { "key": "field_bw_cs_quote_by", "label": "Quote By", "name": "quote_by", "type": "text" },
+        { "key": "field_bw_cs_gallery", "label": "Gallery", "name": "gallery", "type": "gallery", "instructions": "Screens and details. Two across.", "return_format": "array", "preview_size": "medium", "library": "all" }
+    ],
+    "location": [ [ { "param": "post_type", "operator": "==", "value": "case_study" } ] ],
+    "menu_order": 0, "position": "normal", "style": "default", "label_placement": "top", "instruction_placement": "label",
+    "hide_on_screen": [ "the_content" ], "active": true,
+    "description": "Fields for a case study (post type case_study).",
+    "modified": 1788540000
+}

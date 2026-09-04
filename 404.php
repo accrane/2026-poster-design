@@ -27,13 +27,7 @@ get_header(); ?>
 						<?php bellaworks_button( 'Back To The Homepage', home_url( '/' ), 'brown' ); ?>
 						<?php bellaworks_button( 'Ask For Directions', home_url( '/contact-us/' ), 'red' ); ?>
 					</div>
-					<form class="notfound__search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-						<label class="label" for="notfound-s"><?php esc_html_e( 'Or search the site', 'bellaworks' ); ?></label>
-						<div class="notfound__field">
-							<input id="notfound-s" type="search" name="s" placeholder="<?php esc_attr_e( 'What are you looking for?', 'bellaworks' ); ?>">
-							<button type="submit" class="notfound__go" aria-label="<?php esc_attr_e( 'Search', 'bellaworks' ); ?>"><?php bellaworks_arrow(); ?></button>
-						</div>
-					</form>
+					<?php get_template_part( 'parts/site-search', null, array( 'label' => __( 'Or search the site', 'bellaworks' ), 'value' => '' ) ); ?>
 				</div>
 				<div class="page-hero__art-col">
 					<div class="page-hero__art retro-object retro-object--crank">

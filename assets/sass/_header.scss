@@ -77,3 +77,49 @@
 		&__links { flex-direction: row; gap: 38px; }
 	}
 }
+
+// ------------------------------------------------------------------
+// Dropdowns (second level of the Primary menu)
+// ------------------------------------------------------------------
+.site-nav__links {
+	.menu-item-has-children > a {
+		display: inline-flex; align-items: center; gap: 8px;
+		&::after {   // small chevron
+			content: ""; width: 7px; height: 7px; margin-top: -3px;
+			border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+			transform: rotate(45deg);
+			transition: transform 180ms ease;
+		}
+	}
+	.sub-menu {
+		list-style: none; margin: 0; padding: 0;
+	}
+	// mobile: children sit under the parent, indented
+	.sub-menu {
+		display: flex; flex-direction: column; gap: 10px;
+		margin: 12px 0 4px 18px;
+		padding-left: 14px;
+		border-left: 2px dashed $brown-35;
+		a { font-size: 12px; letter-spacing: 0.12em; }
+	}
+	> li.current-menu-item > a, > li.current-menu-ancestor > a { color: $red; }
+
+	@include mid {
+		> li { position: relative; padding: 30px 0; }   // tall hover target so the panel stays open
+		.sub-menu {
+			position: absolute; left: -22px; top: 100%;
+			min-width: 240px;
+			margin: 0; padding: 12px 0;
+			border: 2px solid $brown; border-left-width: 2px; border-radius: 16px;
+			background: $tan;
+			display: none;
+			z-index: 30;
+			&::before { content: ""; position: absolute; inset: 5px; border: 2px dotted $brown; border-radius: 11px; pointer-events: none; }
+			li { position: relative; z-index: 1; }
+			a { display: block; padding: 9px 22px; white-space: nowrap; font-size: 12px; letter-spacing: 0.14em; }
+			li.current-menu-item > a { color: $red; }
+		}
+		> li:hover > .sub-menu, > li:focus-within > .sub-menu, > li.is-open > .sub-menu { display: block; }
+		> li:hover > a::after, > li.is-open > a::after { transform: rotate(225deg); margin-top: 3px; }
+	}
+}

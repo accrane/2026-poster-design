@@ -124,3 +124,20 @@ function bellaworks_clean_post_markup( $content ) {
 	return $content;
 }
 add_filter( 'the_content', 'bellaworks_clean_post_markup', 8 );
+
+/**
+ * Listings: search covers news, pages, services and projects (12 per page);
+ * category/date archives show 9, matching the News page.
+ */
+function bellaworks_listing_queries( $q ) {
+	if ( is_admin() || ! $q->is_main_query() ) {
+		return;
+	}
+	if ( $q->is_search() ) {
+		$q->set( 'post_type', array( 'post', 'page', 'service', 'portfolio' ) );
+		$q->set( 'posts_per_page', 12 );
+	} elseif ( $q->is_archive() ) {
+		$q->set( 'posts_per_page', 9 );
+	}
+}
+add_action( 'pre_get_posts', 'bellaworks_listing_queries' );
