@@ -66,40 +66,66 @@ jQuery(document).ready(function ($) {
         showFrame(t);
       }
     });
-    var navH = $('.site-header').outerHeight() || 88;
-    var tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#hero',
-        start: 'top ' + navH + 'px',
-        end: '+=1000',
-        pin: true,
-        pinSpacing: true,
-        scrub: 0.5,
-        anticipatePin: 1,
-        onUpdate: function onUpdate(self) {
-          showFrame(self.progress * (video.duration || 5));
+    var mm = gsap.matchMedia();
+
+    // Desktop: pin the hero and scrub the video with the scroll position.
+    mm.add('(min-width: 960px)', function () {
+      video.loop = false;
+      video.pause();
+      video.removeAttribute('poster');
+      var navH = $('.site-header').outerHeight() || 88;
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#hero',
+          start: 'top ' + navH + 'px',
+          end: '+=1000',
+          pin: true,
+          pinSpacing: true,
+          scrub: 0.5,
+          anticipatePin: 1,
+          onUpdate: function onUpdate(self) {
+            showFrame(self.progress * (video.duration || 5));
+          }
         }
-      }
+      });
+      tl.to('.hero-l1', {
+        xPercent: -320,
+        ease: 'power2.in',
+        duration: 0.75
+      }, 0).to('.hero-l2', {
+        xPercent: 320,
+        ease: 'power2.in',
+        duration: 0.75
+      }, 0).to('.hero__eyebrow', {
+        opacity: 0,
+        ease: 'none',
+        duration: 0.3
+      }, 0).to('.hero-simple', {
+        scale: 1.65,
+        y: -150,
+        transformOrigin: 'left center',
+        ease: 'power1.inOut',
+        duration: 1
+      }, 0);
     });
-    tl.to('.hero-l1', {
-      xPercent: -320,
-      ease: 'power2.in',
-      duration: 0.75
-    }, 0).to('.hero-l2', {
-      xPercent: 320,
-      ease: 'power2.in',
-      duration: 0.75
-    }, 0).to('.hero__eyebrow', {
-      opacity: 0,
-      ease: 'none',
-      duration: 0.3
-    }, 0).to('.hero-simple', {
-      scale: 1.65,
-      y: -150,
-      transformOrigin: 'left center',
-      ease: 'power1.inOut',
-      duration: 1
-    }, 0);
+
+    // Phone/tablet: no pin, no scrub (iOS won't buffer a video that never
+    // plays, so scrubbing left a blank box). Just loop the rolodex; the
+    // poster covers the case where autoplay is blocked (Low Power Mode).
+    mm.add('(max-width: 959px)', function () {
+      if (video.dataset.poster) {
+        video.poster = video.dataset.poster;
+      }
+      video.loop = true;
+      var p = video.play();
+      if (p && p.catch) {
+        p.catch(function () {});
+      }
+      return function () {
+        video.pause();
+        video.currentTime = 0;
+      };
+    });
     $(window).on('load', function () {
       ScrollTrigger.refresh();
     });

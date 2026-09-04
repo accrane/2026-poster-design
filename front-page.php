@@ -33,8 +33,13 @@ $dir = get_template_directory_uri();
 				<div class="hero__art-col">
 					<div class="hero__art retro-object retro-object--rolodex">
 						<?php bellaworks_retro_info( 'This is what used to be known as a Rolodex.', 'rolodex' ); ?>
-						<video id="heroVideo" class="hero__video" muted playsinline preload="auto" width="560" height="560">
-							<source src="<?php echo esc_url( $dir . '/assets/video/hero-rolodex-alpha.webm' ); ?>" type="video/webm; codecs=vp9">
+						<?php
+						// Desktop scrubs the alpha webm on scroll (no poster: Chrome would keep
+						// showing it). Phones/tablets get the tan-baked mp4, a poster for when
+						// autoplay is blocked, and custom.js plays it on a loop instead of pinning.
+						?>
+						<video id="heroVideo" class="hero__video" muted playsinline preload="auto" width="560" height="560" data-poster="<?php echo esc_url( $dir . '/images/hero-poster-tan.jpg' ); ?>">
+							<source src="<?php echo esc_url( $dir . '/assets/video/hero-rolodex-alpha.webm' ); ?>" type="video/webm; codecs=vp9" media="(min-width: 960px)">
 							<source src="<?php echo esc_url( $dir . '/assets/video/hero-rolodex-tan.mp4' ); ?>" type="video/mp4">
 						</video>
 					</div>

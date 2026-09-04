@@ -15,12 +15,14 @@
 		align-items: center;
 		@include mid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: $gutter; }
 	}
+	// Stacked (phone/tablet): everything centered. Side-by-side (mid+): left-aligned copy.
 	&__copy {
 		display: flex; flex-direction: column; gap: 26px;
+		align-items: center; text-align: center;
 		position: relative; z-index: 3;   // headline exits in front of the video
-		@include mid { grid-column: 1 / 8; gap: 34px; }
+		@include mid { grid-column: 1 / 8; gap: 34px; align-items: flex-start; text-align: left; }
 	}
-	&__eyebrow { display: flex; align-items: center; gap: 12px; }
+	&__eyebrow { display: flex; align-items: center; justify-content: center; gap: 12px; @include mid { justify-content: flex-start; } }
 	&__title {
 		font-size: clamp(72px, 11.4vw, 164px);
 		span { display: block; }
@@ -29,10 +31,10 @@
 		font-size: clamp(56px, 9.2vw, 132px);
 		color: $red;
 		margin-top: 10px;
-		margin-left: 8px;
-		transform-origin: left center;
+		transform-origin: center center;
+		@include mid { margin-left: 8px; transform-origin: left center; }
 	}
-	&__actions { display: flex; align-items: center; gap: 26px; }
+	&__actions { display: flex; align-items: center; justify-content: center; gap: 26px; @include mid { justify-content: flex-start; } }
 
 	&__art-col {
 		display: flex; justify-content: center; align-items: center;
@@ -54,6 +56,9 @@
 		}
 	}
 	.hero-l1, .hero-l2, .hero-simple { will-change: transform; }
+	// Stacked layout plays the tan-baked mp4 (opaque), which would slice the
+	// halftone watermark off along a hard edge — so drop it until mid.
+	> .wm { display: none; @include mid { display: block; } }
 }
 
 // ---- Tagline band ----
