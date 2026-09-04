@@ -37,13 +37,13 @@ get_header(); ?>
 						</a>
 					</div>
 					<div class="contact-hero__actions">
-						<?php bellaworks_button( 'Contact Us', home_url( '/lets-do-this/' ), 'brown' ); ?>
-						<?php bellaworks_button( 'Submit Order Here', home_url( '/work-order-request/' ), 'red' ); ?>
+						<?php bellaworks_button( 'Contact Us', '#contact-form', 'brown' ); ?>
+						<?php bellaworks_button( 'Submit Work Order Here', home_url( '/work-order-request/' ), 'red' ); ?>
 					</div>
 				</div>
 				<div class="page-hero__art-col">
 					<div class="page-hero__art retro-object retro-object--phone">
-						<?php bellaworks_retro_info( 'This is what used to be known as a telephone.', 'phone' ); ?>
+						<?php bellaworks_retro_info( 'Who knows how to make a call? How many numbers do you know by heart?', 'phone' ); ?>
 						<img src="<?php echo esc_url( get_template_directory_uri() . '/images/contact-phone.png' ); ?>" alt="" width="520" height="520">
 					</div>
 				</div>
@@ -59,13 +59,32 @@ get_header(); ?>
 				<div class="contact-ctas__item">
 					<?php bellaworks_star( 26, 'red' ); ?>
 					<h2 class="display">Ready to start a project?</h2>
-					<?php bellaworks_button( 'Contact Us', home_url( '/lets-do-this/' ), 'tan' ); ?>
+					<?php bellaworks_button( 'Contact Us', '#contact-form', 'tan' ); ?>
 				</div>
 				<div class="contact-ctas__item">
 					<?php bellaworks_star( 26, 'red' ); ?>
 					<h2 class="display">Existing customer?</h2>
 					<p>Need to submit a work order?</p>
-					<?php bellaworks_button( 'Submit Order Here', home_url( '/work-order-request/' ), 'tan' ); ?>
+					<?php bellaworks_button( 'Submit Work Order Here', home_url( '/work-order-request/' ), 'tan' ); ?>
+				</div>
+			</div>
+		</section>
+
+		<!-- SIMPLE CONTACT FORM (Gravity Forms "CTA Contact", id 6) -->
+		<section id="contact-form" class="section section--tan contact-form">
+			<?php bellaworks_watermark( 'rings', 'brown', 0.10, 'right: -160px; top: -120px; width: 620px; height: 620px;' ); ?>
+			<div class="wrapper inquiry__grid">
+				<div class="inquiry__aside contact-form__intro">
+					<?php bellaworks_star( 26, 'red' ); ?>
+					<h2 class="display">Drop us a line</h2>
+					<p>Tell us a little about what you need and we&rsquo;ll be in touch.</p>
+				</div>
+				<div class="inquiry__form">
+					<?php
+					if ( function_exists( 'gravity_form' ) ) {
+						gravity_form( 6, false, false, false, null, true );
+					}
+					?>
 				</div>
 			</div>
 		</section>

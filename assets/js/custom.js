@@ -104,4 +104,54 @@ jQuery(document).ready(function ($) {
       ScrollTrigger.refresh();
     });
   }
+
+  /* ---------- Stroke icons draw themselves when scrolled into view ----------
+     Every shape gets a dash the length of its own outline, offset fully so
+     nothing shows; entering the viewport eases the offset to 0, staggered
+     per icon and per shape. Skipped for reduced-motion users. */
+  (function () {
+    var icons = document.querySelectorAll('.icon-strip svg, .service-list__item > svg');
+    if (!icons.length || !('IntersectionObserver' in window)) {
+      return;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+    var shapesOf = function shapesOf(svg) {
+      return svg.querySelectorAll('path, rect, circle, line, polyline, polygon');
+    };
+    icons.forEach(function (svg, i) {
+      shapesOf(svg).forEach(function (el, j) {
+        var len;
+        try {
+          len = el.getTotalLength();
+        } catch (e) {
+          return;
+        }
+        if (!len) {
+          return;
+        }
+        el.style.strokeDasharray = len + ' ' + len;
+        el.style.strokeDashoffset = len;
+        el.style.transition = 'stroke-dashoffset 900ms ease ' + (i * 140 + j * 160) + 'ms';
+      });
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) {
+          return;
+        }
+        shapesOf(entry.target).forEach(function (el) {
+          el.style.strokeDashoffset = 0;
+        });
+        entry.target.classList.add('is-drawn');
+        io.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.4
+    });
+    icons.forEach(function (svg) {
+      io.observe(svg);
+    });
+  })();
 });

@@ -352,3 +352,49 @@ function get_excerpt($text,$limit=100) {
 
 
 
+
+/**
+ * GA4 key events (ported from bellaworksweb-2024-standard).
+ *
+ * The gtag.js base snippet itself is injected site-wide by the
+ * Insert Headers and Footers plugin (G-MRLYRVSDHD), not by the theme.
+ *
+ *  - click_to_call  : any tel: link, anywhere on the site
+ *  - generate_lead  : Gravity Forms form 8 (Let's do this) submits successfully
+ */
+
+// Flag a successful submission so the next page load can report it,
+// whatever the confirmation type (message, page, or redirect).
+add_action( 'gform_after_submission_8', function () {
+	setcookie( 'bw_lead', '1', time() + 300, '/' );
+} );
+
+add_action( 'wp_footer', function () { ?>
+<script>
+(function () {
+  if (typeof gtag !== 'function') return;
+
+  // Phone taps anywhere on the site.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="tel:"]');
+    if (!a) return;
+    gtag('event', 'click_to_call', {
+      phone_number: a.getAttribute('href').replace('tel:', ''),
+      link_text: a.textContent.trim()
+    });
+  });
+
+  // Lead form.
+  function lead(source) {
+    gtag('event', 'generate_lead', { form_id: '8', form_name: 'Lets do this', source: source });
+  }
+  if (window.jQuery) {
+    jQuery(document).on('gform_confirmation_loaded', function () { lead('ajax'); });
+  }
+  if (/(^|; )bw_lead=1/.test(document.cookie)) {
+    lead('reload');
+    document.cookie = 'bw_lead=; Max-Age=0; path=/';
+  }
+})();
+</script>
+<?php }, 100 );

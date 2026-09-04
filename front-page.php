@@ -79,10 +79,23 @@ $dir = get_template_directory_uri();
 					<div class="script solutions__script">(We Got You Covered)</div>
 				</div>
 				<div class="icon-strip">
-					<div><?php bellaworks_icon( 'copy' ); ?><span class="label">Copy<br>Writing</span></div>
-					<div><?php bellaworks_icon( 'design' ); ?><span class="label">Design<br>+ Dev</span></div>
-					<div><?php bellaworks_icon( 'hosting' ); ?><span class="label">Website<br>Hosting</span></div>
-					<div><?php bellaworks_icon( 'marketing' ); ?><span class="label">Digital<br>Marketing</span></div>
+					<?php
+					// icon => [service slug, label]; each cell links to its service page.
+					$strip = array(
+						'design'    => array( 'website-design-development', 'Design<br>+ Dev' ),
+						'marketing' => array( 'digital-marketing', 'Marketing<br>+ Automation' ),
+						'seo'       => array( 'seo', 'SEO, AEO<br>&amp; GEO' ),
+						'hosting'   => array( 'website-hosting', 'Website<br>Hosting' ),
+						'copy'      => array( 'website-copywriting', 'Copy<br>Writing' ),
+					);
+					foreach ( $strip as $icon => $cell ) {
+						$svc = get_page_by_path( $cell[0], OBJECT, 'service' );
+						$url = $svc ? get_permalink( $svc ) : home_url( '/services/' );
+						echo '<a href="' . esc_url( $url ) . '">';
+						bellaworks_icon( $icon );
+						echo '<span class="label">' . $cell[1] . '</span></a>'; // phpcs:ignore -- static markup
+					}
+					?>
 				</div>
 				<div class="solutions__cta">
 					<?php bellaworks_button( 'Explore Our Services', home_url( '/services/' ), 'tan' ); ?>
@@ -100,20 +113,22 @@ $dir = get_template_directory_uri();
 				</div>
 				<div class="work-grid">
 					<?php
-					$work = array(
-						'work-nourish-up.jpg'      => 'Nourish Up website',
-						'work-usnwc.jpg'           => 'U.S. National Whitewater Center website',
-						'work-colony.jpg'          => 'Colony Family Offices website',
-						'work-steelfab.jpg'        => 'SteelFab website',
-						'work-clearview.jpg'       => 'Clearview website',
-						'work-neatbooks.jpg'       => 'NeatBooks website',
-						'work-modern-lighting.jpg' => 'Modern Lighting website',
-						'work-fletcher.jpg'        => 'Fletcher website',
-						'work-friends.jpg'         => 'Friends website',
-					);
-					foreach ( $work as $file => $alt ) {
-						echo '<div class="thumb-card"><img src="' . esc_url( $dir . '/images/' . $file ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy"></div>';
+					// Latest nine projects (menu order), each linking to its project page.
+					$work = new WP_Query( array(
+						'post_type'      => 'portfolio',
+						'post_status'    => 'publish',
+						'posts_per_page' => 9,
+						'orderby'        => array( 'menu_order' => 'ASC', 'date' => 'DESC' ),
+						'meta_key'       => '_thumbnail_id',
+						'no_found_rows'  => true,
+					) );
+					while ( $work->have_posts() ) {
+						$work->the_post();
+						echo '<a class="thumb-card thumb-card--link" href="' . esc_url( get_permalink() ) . '">';
+						the_post_thumbnail( 'bellaworks-work', array( 'loading' => 'lazy', 'decoding' => 'async', 'alt' => get_the_title() . ' website' ) );
+						echo '<span class="thumb-card__name label">' . esc_html( get_the_title() ) . '</span></a>';
 					}
+					wp_reset_postdata();
 					?>
 				</div>
 			</div>

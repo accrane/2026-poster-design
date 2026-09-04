@@ -196,6 +196,7 @@ function bellaworks_icon( $name, $size = 64 ) {
 		'design'    => '<rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18"></path><path d="M9 14l-2 2 2 2"></path><path d="M15 14l2 2-2 2"></path>',
 		'hosting'   => '<rect x="3" y="4" width="18" height="6" rx="1.5"></rect><rect x="3" y="14" width="18" height="6" rx="1.5"></rect><path d="M7 7h.01"></path><path d="M7 17h.01"></path>',
 		'marketing' => '<path d="M3 11v2a1 1 0 0 0 1 1h2l6 4V6L6 10H4a1 1 0 0 0-1 1z"></path><path d="M16 9a4 4 0 0 1 0 6"></path><path d="M18.5 6.5a8 8 0 0 1 0 11"></path>',
+		'seo'       => '<circle cx="10" cy="11" r="6"></circle><path d="M14.5 15.5L20 21"></path><path d="M18.5 2.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"></path>',
 	);
 	$p = ( isset( $paths[ $name ] ) ) ? $paths[ $name ] : '';
 	echo '<svg width="' . intval( $size ) . '" height="' . intval( $size ) . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $p . '</svg>';

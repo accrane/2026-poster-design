@@ -25,13 +25,28 @@
 		border-radius: 999px;
 		pointer-events: none;
 	}
-	svg { width: 16px; height: 16px; flex-shrink: 0; }
-	&--brown { background: $brown; color: $tan; &:hover { color: $tan; } }
-	&--red   { background: $red;   color: $tan; &:hover { color: $tan; } }
-	&--tan   { background: $tan;   color: $brown; &:hover { color: $brown; } }
+	svg { width: 16px; height: 16px; flex-shrink: 0; transition: transform 180ms ease; }
+	transition: background-color 180ms ease, color 180ms ease;
+	&:hover svg, &:focus-visible svg { transform: translateX(4px); }
+
+	&--brown { background: $brown; color: $tan; }
+	&--red   { background: $red;   color: $tan; }
+	&--tan   { background: $tan;   color: $brown; }
 	// section link colors must not override button text colors
-	.section--red &--tan, .section--brown &--tan { color: $brown; &:hover { color: $brown; } }
-	.section--tan &--brown, .section--tan &--red, .section--red &--red, .section--brown &--red, .section--red &--brown, .section--brown &--brown { color: $tan; &:hover { color: $tan; } }
+	.section--red &--tan, .section--brown &--tan { color: $brown; }
+	.section--tan &--brown, .section--tan &--red, .section--red &--red, .section--brown &--red, .section--red &--brown, .section--brown &--brown { color: $tan; }
+
+	// Hover / focus: swap to the next palette color that still reads against the
+	// section, and nudge the arrow. The dotted ring follows currentColor.
+	&--brown:hover, &--brown:focus-visible,
+	.section--tan &--brown:hover, .section--tan &--brown:focus-visible { background: $red; color: $tan; }
+	&--red:hover, &--red:focus-visible,
+	.section--tan &--red:hover, .section--tan &--red:focus-visible { background: $brown; color: $tan; }
+	.section--brown &--red:hover, .section--brown &--red:focus-visible,
+	.section--red &--red:hover, .section--red &--red:focus-visible { background: $tan; color: $brown; }
+	&--tan:hover, &--tan:focus-visible,
+	.section--brown &--tan:hover, .section--brown &--tan:focus-visible { background: $red; color: $tan; }
+	.section--red &--tan:hover, .section--red &--tan:focus-visible { background: $brown; color: $tan; }
 	&--sm    { height: 44px; padding: 0 22px; }
 	&--lg    { height: 60px; padding: 0 40px; font-size: 14px; }
 }
@@ -59,7 +74,7 @@
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	border-top: 2px dashed $tan-35;
 	border-bottom: 2px dashed $tan-35;
-	> div {
+	> div, > a {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -68,12 +83,12 @@
 		border-bottom: 2px solid $tan-35;
 		text-align: center;
 		&:nth-child(odd) { border-right: 2px solid $tan-35; }
-		&:nth-last-child(-n+2) { border-bottom: 0; }
+		&:last-child, &:nth-last-child(2):nth-child(odd) { border-bottom: 0; }   // last row only, odd counts included
 		svg { width: 48px; height: 48px; }
 	}
 	@include tab {
-		grid-template-columns: repeat(4, minmax(0, 1fr));
-		> div {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		> div, > a {
 			gap: 22px;
 			padding: 44px 20px;
 			border-bottom: 0;
@@ -82,6 +97,19 @@
 			svg { width: 64px; height: 64px; }
 		}
 	}
+	// linked cells: tint, lift the icon, underline the label
+	> a {
+		color: inherit; text-decoration: none;
+		transition: background-color 180ms ease;
+		svg { transition: transform 180ms ease; }
+		.label { padding-bottom: 4px; border-bottom: 2px dotted transparent; transition: border-color 180ms ease; }
+		&:hover, &:focus-visible {
+			background: rgba(239, 222, 196, 0.07);
+			svg { transform: translateY(-4px) scale(1.08); }
+			.label { border-bottom-color: currentColor; }
+		}
+	}
+	.section &  > a, .section & > a:hover { color: $tan; }   // beats the section link hover color
 }
 
 // ------------------------------------------------------------------
@@ -93,6 +121,20 @@
 	overflow: hidden;
 	border: 2px solid $brown;
 	img { width: 100%; height: 100%; object-fit: cover; display: block; }
+	// linked thumbnail: zoom the image, slide the project name up from the bottom edge
+	&--link {
+		display: block; position: relative; color: $brown;
+		img { transition: transform 320ms ease; }
+		&:hover, &:focus-visible { img { transform: scale(1.05); } .thumb-card__name { transform: none; } }
+	}
+	&__name {
+		position: absolute; left: 0; right: 0; bottom: 0;
+		padding: 12px 18px;
+		background: $tan; color: $brown;
+		border-top: 2px solid $brown;
+		transform: translateY(100%);
+		transition: transform 180ms ease;
+	}
 }
 .work-grid {
 	display: grid;
@@ -120,7 +162,7 @@
 	z-index: 4;
 	// One rule per illustration — offsets are % of the artwork box, so they
 	// scale with the image. Add a new line for every new object.
-	&--rolodex    { left: 15.7%; top: 7.9%; }    // 88 / 44 on the 560px hero video
+	&--rolodex    { left: calc(15.7% - 8px); top: 7.9%; }    // 88 / 44 on the 560px hero video, nudged 8px left
 	&--typewriter { left: 13.5%; top: 11.5%; }   // 70 / 60 on the 520px typewriter
 	&--phone      { left: 17.3%; top: 13.5%; }   // 90 / 70 on the 520px rotary phone
 	&__btn {

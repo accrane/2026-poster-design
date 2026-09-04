@@ -50,6 +50,9 @@
 	}
 }
 
+// The hero copy column is a flex column; keep buttons pill-sized instead of stretched.
+.page-hero__copy > .btn { align-self: flex-start; }
+
 // ---- About: Our approach (red) ----
 .approach {
 	&__grid {
@@ -146,6 +149,20 @@
 	}
 }
 
+// ---- Contact: simple form (anchored from the Contact Us buttons) ----
+html { scroll-behavior: smooth; scroll-padding-top: $nav-h + 24px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.contact-form {
+	// nested so these outrank the .inquiry__* rules below
+	.inquiry__aside {
+		gap: 18px;
+		@include mid { grid-column: 1 / 6; grid-row: 1; padding-left: 0; padding-right: 24px; }
+		h2 { font-size: clamp(40px, 5vw, 64px); }
+		p { font-size: 18px; line-height: 1.6; }
+	}
+	.inquiry__form { @include mid { grid-column: 6 / 13; grid-row: 1; } }
+}
+
 // ---- Let's Do This (inquiry form) ----
 .page-hero--form { padding-bottom: 16px !important; }   // room for the script descender (section clips overflow)
 .inquiry-hero {
@@ -171,5 +188,331 @@
 		display: flex; flex-direction: column; gap: 10px;
 		border-top: 2px dashed $brown-35; padding-top: 18px; width: 100%;
 		a { color: $brown; font-weight: 700; font-size: 16px; display: flex; gap: 12px; align-items: center; .label { color: $red; width: 18px; } &:hover { color: $red; } }
+	}
+}
+
+// ---- Our Work (project index) ----
+.work-hero {
+	&__top { position: relative; }   // the vertical label centers on the hero block, not the whole section
+	.page-hero__grid { padding-bottom: 8px; }
+}
+.work-index {
+	display: flex; flex-direction: column; gap: 40px;
+	padding-top: 40px;
+	@include tab { gap: 56px; padding-top: 56px; }
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 36px 24px;
+		@include xs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		@include mid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px $gutter; }
+	}
+}
+.work-card {
+	display: flex; flex-direction: column; gap: 16px;
+	color: $brown;
+	text-decoration: none;
+	&__thumb {
+		aspect-ratio: 3 / 2;
+		background: $brown;
+		img { transition: transform 320ms ease; }
+	}
+	&__caption {
+		display: flex; flex-direction: column; gap: 6px; align-items: flex-start;
+		padding-right: 8px;
+	}
+	&__title { font-size: 26px; transition: color 180ms ease; @include tab { font-size: 30px; } }
+	&__type { color: $red; }
+	&:hover, &:focus-visible {
+		.work-card__title { color: $red; }
+		.work-card__thumb img { transform: scale(1.05); }
+	}
+}
+.retro-info--projector { left: 12%; top: 10%; }
+
+// ---- Project (single-portfolio.php) ----
+.project-hero {
+	&__top { position: relative; }
+	&__actions { display: flex; flex-wrap: wrap; gap: 16px 26px; align-items: center; }
+	&__back {
+		display: inline-flex; align-items: center; gap: 10px;
+		font-weight: 700; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+		color: $brown;
+		svg { transform: rotate(180deg); }
+		&:hover { color: $red; }
+	}
+	&__banner {
+		padding-top: 40px;
+		@include tab { padding-top: 56px; }
+		.thumb-card img { height: auto; }
+	}
+}
+
+// 35mm slide mount around the detail photo
+.slide {
+	position: relative;
+	display: block;
+	width: 100%;
+	max-width: 520px;
+	background: $tan;
+	border: 2px solid $brown;
+	border-radius: 10px;
+	padding: 36px 26px 34px;
+	transform: rotate(-3deg);
+	&::before { content: ""; position: absolute; inset: 6px; border: 2px dotted $brown; border-radius: 6px; pointer-events: none; }
+	&__window {
+		display: block;
+		aspect-ratio: 3 / 2;
+		border: 2px solid $brown;
+		border-radius: 4px;
+		overflow: hidden;
+		background: $brown;
+		img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+	}
+	&__label { position: absolute; left: 30px; font-size: 10px; color: $brown; &--top { top: 13px; } &--bottom { bottom: 11px; } }
+	&__num { position: absolute; right: 30px; top: 9px; font-family: $font_display; font-size: 18px; line-height: 1; color: $red; }
+}
+.project-hero .page-hero__art-col { @include mid { justify-content: flex-start; } }
+.retro-object--slide { max-width: 400px; @include xxl { max-width: 440px; } }   // stays clear of the vertical label on the right edge
+
+// Key features + full-page screenshot (red)
+.project-features {
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 40px;
+		align-items: start;
+		@include mid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: $gutter; }
+	}
+	&__copy {
+		display: flex; flex-direction: column; gap: 28px; align-items: flex-start;
+		@include mid { grid-column: 1 / 7; position: sticky; top: $nav-h + 40px; }
+		h2 { font-size: clamp(44px, 5vw, 72px); }
+	}
+	&__list {
+		list-style: none; margin: 0; padding: 0;
+		display: flex; flex-direction: column; gap: 14px;
+		li { display: flex; gap: 14px; align-items: flex-start; font-size: 18px; line-height: 1.5; @include tab { font-size: 19px; } .star { flex: 0 0 auto; margin-top: 6px; } }
+	}
+	&__text { p + p { margin-top: 1em; } }
+	&__shot { display: flex; flex-direction: column; gap: 12px; @include mid { grid-column: 7 / 13; } }
+	&__hint { opacity: 0.7; font-size: 10px; }
+}
+.site-scroll {
+	--h: 520px;
+	height: var(--h);
+	@include tab { --h: 680px; }
+	overflow: hidden;
+	background: $tan;
+	img { width: 100%; height: auto; display: block; transition: transform 10s linear; }
+	&:hover img { transform: translateY(calc(-100% + var(--h))); }
+	@media (prefers-reduced-motion: reduce) { img { transition: none; } &:hover img { transform: none; } }
+}
+
+// Palette + testimonial (brown)
+.project-palette {
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 40px;
+		align-items: center;
+		@include mid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: $gutter; }
+	}
+	&__brand {
+		display: flex; flex-direction: column; gap: 30px; align-items: flex-start;
+		@include mid { grid-column: 1 / 7; }
+	}
+	&__logo {
+		display: inline-flex; align-items: center; justify-content: center;
+		background: $tan;
+		border: 2px solid $brown;
+		border-radius: 14px;
+		padding: 22px 28px;
+		img { max-width: 220px; max-height: 90px; width: auto; height: auto; object-fit: contain; display: block; }
+	}
+	&__note { font-size: 28px; line-height: 1.25; max-width: 560px; @include tab { font-size: 34px; } }
+	&__chips { display: flex; flex-wrap: wrap; gap: 18px 22px; }
+	&__chip {
+		display: flex; flex-direction: column; align-items: center; gap: 8px;
+		span:first-child { width: 72px; height: 72px; border-radius: 16px; border: 2px solid $tan; display: block; }
+		.label { font-size: 10px; }
+	}
+	&__quote {
+		margin: 0;
+		display: flex; flex-direction: column; gap: 22px; align-items: flex-start;
+		border-top: 2px dashed $tan-55; padding-top: 32px;
+		@include mid { grid-column: 7 / 13; border-top: 0; border-left: 2px dashed $tan-55; padding: 0 0 0 40px; }
+		.stamp { width: 130px; height: 130px; @include tab { width: 150px; height: 150px; } circle, text { stroke: $tan; fill: none; } text { fill: $tan; stroke: none; } }
+		p { font-size: 18px; line-height: 1.6; @include tab { font-size: 20px; } }
+		cite { font-style: normal; }
+	}
+}
+
+// Gallery + previous / next (tan)
+.project-gallery {
+	padding-bottom: 48px;
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 24px;
+		@include xs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		.thumb-card img { height: auto; }
+		.thumb-card:only-child { grid-column: 1 / -1; }   // a lone extra photo spans the row
+	}
+}
+.project-nav {
+	padding: 48px 0;
+	@include tab { padding: 64px 0; }
+	&__inner { display: flex; flex-direction: column; gap: 32px; }
+	&__row { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+	&__link {
+		display: flex; flex-direction: column; gap: 8px;
+		color: $brown;
+		.label { color: $red; }
+		.display { font-size: 26px; @include tab { font-size: 34px; } }
+		&:hover { color: $red; }
+		&--next { margin-left: auto; text-align: right; align-items: flex-end; }
+	}
+}
+
+// ---- Services (page-services.php) ----
+.services-hero {
+	.page-hero__copy { @include mid { grid-column: 1 / 8; } }
+	.page-hero__script { font-size: clamp(30px, 3.6vw, 52px); margin-top: 16px; }
+}
+.retro-info--bell { left: 16%; top: 24%; }   // 83 / 125 on the 520px bell
+.service-list {
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		border-top: 2px dashed $tan-35;
+		border-bottom: 2px dashed $tan-35;
+		@include xs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		@include desk { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	}
+	&__item {
+		display: flex; flex-direction: column; align-items: flex-start; gap: 18px;
+		padding: 36px 8px 40px;
+		color: $tan; text-decoration: none;
+		transition: background-color 180ms ease;
+		> svg { transition: transform 180ms ease; }
+		&:hover, &:focus-visible {
+			background: rgba(239, 222, 196, 0.07);
+			> svg { transform: translateY(-4px) scale(1.08); }
+			.service-list__more { border-bottom-color: $tan; svg { transform: translateX(5px); } }
+		}
+		border-bottom: 2px solid $tan-35;
+		&:last-child { border-bottom: 0; }
+		> svg { width: 56px; height: 56px; }
+		@include xs {
+			padding: 44px 28px 48px;
+			&:nth-child(odd) { border-right: 2px solid $tan-35; }
+			&:last-child, &:nth-last-child(2):nth-child(odd) { border-bottom: 0; }
+		}
+		// three across, so five services sit as 3 + 2
+		@include desk {
+			padding: 52px 32px 56px;
+			border-bottom: 2px solid $tan-35;
+			border-right: 2px solid $tan-35;
+			&:nth-child(3n) { border-right: 0; }
+			&:nth-child(n+4) { border-bottom: 0; }
+			&:last-child { border-right: 0; }
+			> svg { width: 64px; height: 64px; }
+		}
+	}
+	&__title { font-size: 34px; @include tab { font-size: 40px; } }
+	&__text { font-size: 17px; line-height: 1.55; flex: 1; }
+	&__more {
+		display: inline-flex; align-items: center; gap: 10px;
+		font-weight: 700; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+		color: $tan;
+		padding-bottom: 6px;
+		border-bottom: 2px dotted transparent;
+		transition: border-color 180ms ease;
+		svg { width: 16px; height: 16px; transition: transform 180ms ease; }
+		// red on brown is too dim for a hover state; stay tan and reveal a dotted rule + nudge the arrow
+	}
+	// outranks the global .section--brown a:hover (brown) rule
+	.section & .service-list__item:hover, .section & .service-list__item:focus-visible { color: $tan; }
+}
+.steps--tan {
+	.steps__item p { color: $brown; }
+}
+
+// ---- Service (single-service.php) ----
+.service-hero {
+	.page-hero__script { font-size: clamp(40px, 5.2vw, 76px); }
+	.page-hero__text { p + p { margin-top: 1em; } }
+	.btn { margin-top: 6px; }
+}
+// Round seal holding the service's stroke icon (stands in for a retro object).
+.service-seal {
+	position: relative;
+	width: 280px; height: 280px;
+	border: 5px solid $brown;
+	border-radius: 50%;
+	display: flex; align-items: center; justify-content: center;
+	color: $brown;
+	transform: rotate(-8deg);
+	&::before { content: ""; position: absolute; inset: 8px; border: 2px dotted $brown; border-radius: 50%; }
+	&::after  { content: ""; position: absolute; inset: 40px; border: 4px solid $brown; border-radius: 50%; }
+	> svg:first-child { width: 110px; height: 110px; position: relative; z-index: 1; }
+	.star { position: absolute; top: 24px; right: 24px; }
+	@include tab { width: 360px; height: 360px; > svg:first-child { width: 150px; height: 150px; } &::after { inset: 52px; } .star { top: 34px; right: 34px; } }
+}
+.service-row {
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 40px;
+		align-items: start;
+		@include mid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: $gutter; }
+	}
+	&__col {
+		display: flex; flex-direction: column; gap: 22px;
+		@include mid { grid-column: span 6; }
+		p { font-size: 18px; line-height: 1.6; @include tab { font-size: 19px; } }
+		ul, ol { padding-left: 1.2em; font-size: 18px; line-height: 1.6; }
+		a { text-decoration: underline; text-underline-offset: 4px; }
+		&--aside {
+			border-top: 2px dashed $tan-55; padding-top: 28px;
+			@include mid { border-top: 0; border-left: 2px dashed $tan-55; padding: 0 0 0 40px; align-self: center; }
+		}
+		// a lone column takes the reading width
+		&:only-child { @include mid { grid-column: 1 / 9; } }
+	}
+	&__heading { font-size: clamp(36px, 4vw, 56px); }
+	&__quote { font-size: 26px; line-height: 1.3; @include tab { font-size: 32px; } }
+}
+.faq {
+	&__inner { display: flex; flex-direction: column; gap: 32px; @include tab { gap: 44px; } }
+	&__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; h2 { font-size: clamp(40px, 5vw, 72px); } .star { margin-bottom: 12px; flex: 0 0 auto; } }
+	&__list { display: flex; flex-direction: column; border-top: 2px dashed $brown-35; }
+	&__item {
+		border-bottom: 2px dashed $brown-35;
+		summary {
+			list-style: none; cursor: pointer;
+			display: flex; gap: 18px; align-items: flex-start;
+			padding: 22px 0;
+			font-weight: 700; font-size: 18px; line-height: 1.4;
+			@include tab { font-size: 20px; padding: 26px 0; }
+			&::-webkit-details-marker { display: none; }
+			&:hover { color: $red; }
+		}
+		&[open] .faq__mark { transform: rotate(45deg); }
+	}
+	&__mark {
+		flex: 0 0 auto; width: 26px; height: 26px; margin-top: 1px;
+		border: 2px solid $brown; border-radius: 50%;
+		position: relative;
+		transition: transform 180ms ease;
+		&::before, &::after { content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 2px; background: $brown; transform: translate(-50%, -50%); }
+		&::after { transform: translate(-50%, -50%) rotate(90deg); }
+	}
+	&__answer {
+		padding: 0 0 26px 44px;
+		max-width: 800px;
+		p { font-size: 17px; line-height: 1.6; }
+		p + p { margin-top: 1em; }
 	}
 }

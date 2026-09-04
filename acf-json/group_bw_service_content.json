@@ -1,0 +1,25 @@
+{
+    "key": "group_bw_service_content",
+    "title": "Service Content",
+    "fields": [
+        { "key": "field_bw_svc_tab1", "label": "Row 1", "name": "", "type": "tab", "placement": "top", "endpoint": 0 },
+        { "key": "field_bw_svc_row1_title", "label": "Title", "name": "row1_title", "type": "textarea", "instructions": "Headline. Wrap the second thought in <strong> to set it in the red script face.", "rows": 3, "new_lines": "br", "default_value": "", "placeholder": "", "maxlength": "" },
+        { "key": "field_bw_svc_row1_content", "label": "Content", "name": "row1_content", "type": "wysiwyg", "instructions": "Intro copy under the headline.", "tabs": "all", "toolbar": "full", "media_upload": 0, "delay": 0, "default_value": "" },
+        { "key": "field_bw_svc_tab2", "label": "Row 2", "name": "", "type": "tab", "placement": "top", "endpoint": 0 },
+        { "key": "field_bw_svc_row2_content_left", "label": "Content Left", "name": "row2_content_left", "type": "wysiwyg", "instructions": "Start with a Heading 2.", "tabs": "all", "toolbar": "full", "media_upload": 0, "delay": 0, "default_value": "" },
+        { "key": "field_bw_svc_row2_content_right", "label": "Content Right", "name": "row2_content_right", "type": "wysiwyg", "instructions": "Start with a Heading 2, or leave the heading out and keep it short for a script pull quote.", "tabs": "all", "toolbar": "full", "media_upload": 0, "delay": 0, "default_value": "" },
+        { "key": "field_bw_svc_tab3", "label": "Row 3", "name": "", "type": "tab", "placement": "top", "endpoint": 0 },
+        { "key": "field_bw_svc_row3_content_left", "label": "Content Left", "name": "row3_content_left", "type": "wysiwyg", "instructions": "Optional. Start with a Heading 2.", "tabs": "all", "toolbar": "full", "media_upload": 0, "delay": 0, "default_value": "" },
+        { "key": "field_bw_svc_row3_content_right", "label": "Content Right", "name": "row3_content_right", "type": "wysiwyg", "instructions": "Optional. Heading 2, or a short pull quote.", "tabs": "all", "toolbar": "full", "media_upload": 0, "delay": 0, "default_value": "" }
+    ],
+    "location": [ [ { "param": "post_type", "operator": "==", "value": "service" } ] ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [ "the_content" ],
+    "active": true,
+    "description": "One group for every service page. Replaces the four per-service groups from the 2024 theme.",
+    "modified": 1788530000
+}

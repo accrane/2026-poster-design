@@ -26,6 +26,9 @@ function bellaworks_setup() {
 
 	// Portfolio thumbnails on the homepage grid (3:2, cropped).
 	add_image_size( 'bellaworks-work', 880, 560, true );
+	// Project pages: wide site banner and the tall full-page screenshot (no crop).
+	add_image_size( 'bellaworks-banner', 1600, 0, false );
+	add_image_size( 'bellaworks-tall', 1000, 0, false );
 }
 endif;
 add_action( 'after_setup_theme', 'bellaworks_setup' );

@@ -68,7 +68,7 @@ $form-border: 2px solid $brown;
 			margin: 0;
 			padding: 0 18px;
 			height: 54px;
-			background: rgba(255, 255, 255, 0.22);   // a whisper lighter than the tan page
+			background: mix(#fff, $tan, 22%);        // opaque: 22% white over tan (#f3e5d1) so the eyes stay hidden behind the field
 			color: $brown;
 			border: $form-border;
 			border-radius: $form-radius;
@@ -95,8 +95,10 @@ $form-border: 2px solid $brown;
 		}
 		// dark sections
 		.section--brown &, .section--red & {
-			input, textarea, select { background: transparent; color: $tan; border-color: $tan; &::placeholder { color: rgba(239, 222, 196, .55); } }
+			input, textarea, select { color: $tan; border-color: $tan; &::placeholder { color: rgba(239, 222, 196, .55); } }
 		}
+		.section--brown & { input, textarea, select { background: $brown; } }   // opaque so the peeking eyes stay hidden
+		.section--red &   { input, textarea, select { background: $red; } }
 	}
 
 	// Name / address complex fields: sub inputs sit side by side
@@ -190,11 +192,11 @@ $form-border: 2px solid $brown;
 	opacity: 1;
 	transform: translateY(-88%);
 	.field-eyes__pupils { transform: translateY(2px); }          // looking down at what you type
-	.field-eyes__lids { animation: field-eyes-blink 4.5s ease-in-out 1.2s infinite; }
+	.field-eyes__lids { animation: field-eyes-blink 3s linear .9s infinite; }   // quick ~200ms blink every 3s
 }
 @keyframes field-eyes-blink {
-	0%, 92%, 100% { opacity: 0; }
-	94%, 98% { opacity: 1; }
+	0%, 93%, 100% { opacity: 0; }
+	95%, 97.5% { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
 	.field-eyes { transition: none; }

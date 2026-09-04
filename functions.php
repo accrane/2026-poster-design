@@ -33,6 +33,11 @@ require get_template_directory() . '/inc/extras.php';
 require get_template_directory() . '/inc/anti-email-spam.php';
 
 /**
+ * Favicon + login screen branding.
+ */
+require get_template_directory() . '/inc/branding.php';
+
+/**
  * Theme specific additions.
  */
 require get_template_directory() . '/inc/theme.php';

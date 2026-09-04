@@ -56,7 +56,7 @@ if ( $row2_text_left && preg_match( '/<h2[^>]*>(.*?)<\/h2>/is', $row2_text_left,
 				</div>
 				<div class="page-hero__art-col">
 					<div class="page-hero__art retro-object retro-object--typewriter">
-						<?php bellaworks_retro_info( 'This is what used to be known as a typewriter.', 'typewriter' ); ?>
+						<?php bellaworks_retro_info( 'This is not a funny looking laptop. It\'s a typewriter... that types words on paper.', 'typewriter' ); ?>
 						<img src="<?php echo esc_url( get_template_directory_uri() . '/images/about-typewriter.png' ); ?>" alt="" width="520" height="520">
 					</div>
 				</div>

@@ -8,15 +8,23 @@
 add_action('init', 'js_custom_init', 1);
 function js_custom_init() {
     $post_types = array(
+      // Portfolio: existing live content type (URLs /portfolio/{slug}/, listed on /our-work/).
       array(
-        'post_type' => 'work',
+        'post_type' => 'portfolio',
         'menu_name' => 'Work',
-        'plural'    => 'Work',
+        'plural'    => 'Projects',
         'single'    => 'Project',
         'menu_icon' => 'dashicons-portfolio',
-        'supports'  => array('title','editor','thumbnail','excerpt'),
-        'has_archive' => true,
-        'rewrite'   => array('slug' => 'work')
+        'supports'  => array('title','editor','thumbnail','excerpt')
+      ),
+      // Services: existing live content type (URLs /service/{slug}/, listed on /services/).
+      array(
+        'post_type' => 'service',
+        'menu_name' => 'Services',
+        'plural'    => 'Services',
+        'single'    => 'Service',
+        'menu_icon' => 'dashicons-groups',
+        'supports'  => array('title','editor','excerpt','thumbnail')
       ),
     );
     
@@ -83,7 +91,16 @@ function js_custom_init() {
 */
 add_action( 'init', 'build_taxonomies', 0 ); 
 function build_taxonomies() {
-  $post_types  = array();
+  $post_types = array(
+    array(
+      'post_type' => 'portfolio',
+      'menu_name' => 'Business Types',
+      'plural'    => 'Business Types',
+      'single'    => 'Business Type',
+      'taxonomy'  => 'business-type',
+      'rewrite'   => 'business-type'
+    ),
+  );
   // $post_types = array(
   //   array(
   //     'post_type' => array('team','careers'),
