@@ -1,7 +1,6 @@
 .DS_Store
 node_modules/
 # raw multi-MB generation candidates (downsampled .jpg versions are committed)
-concept/hero-*.png
 concept2/mascot-*.png
 concept2/rolodex-*.png
 concept2/rolodex-*-900.png
