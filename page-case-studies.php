@@ -28,7 +28,7 @@ $studies = new WP_Query( array( 'post_type' => 'case_study', 'post_status' => 'p
 					</div>
 					<div class="page-hero__art-col">
 						<div class="page-hero__art retro-object retro-object--casefile">
-							<?php bellaworks_retro_info( 'This is what used to be known as a filing system.', 'casefile' ); ?>
+							<?php bellaworks_retro_info( 'Can you imagine what is in here!?', 'casefile' ); ?>
 							<img src="<?php echo esc_url( get_template_directory_uri() . '/images/case-file.png' ); ?>" alt="" width="520" height="520">
 						</div>
 					</div>
