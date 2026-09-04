@@ -106,3 +106,21 @@ add_action( 'admin_init', function () {
 		wp_die( esc_html( $msg ) . ' <a href="' . esc_url( admin_url( 'edit.php?post_type=service' ) ) . '">Back to Services</a>', 'Service fields migrated', array( 'response' => 200 ) );
 	}
 } );
+
+/**
+ * News posts were pasted from Word: every paragraph is wrapped in
+ * <span style="font-weight: 400;"> and headings carry <b>. Unwrap those
+ * before wpautop so the paragraphs form normally and headings set in the
+ * display face. Runs on the front end only, for posts.
+ */
+function bellaworks_clean_post_markup( $content ) {
+	if ( is_admin() || 'post' !== get_post_type() ) {
+		return $content;
+	}
+	$content = preg_replace( '/<span[^>]*style="[^"]*font-weight:\s*400;?[^"]*"[^>]*>(.*?)<\/span>/is', '$1', $content );
+	$content = preg_replace( '/<span[^>]*style="[^"]*"[^>]*>(.*?)<\/span>/is', '$1', $content );
+	$content = preg_replace( '/(<h[1-6][^>]*>)\s*<(b|strong)>(.*?)<\/\2>(?:\s|&nbsp;|\x{00A0})*(<\/h[1-6]>)/isu', '$1$3$4', $content );
+	$content = preg_replace( '/<p>(?:\s|&nbsp;|\x{00A0})*<\/p>/iu', '', $content );
+	return $content;
+}
+add_filter( 'the_content', 'bellaworks_clean_post_markup', 8 );
