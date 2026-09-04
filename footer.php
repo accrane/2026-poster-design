@@ -13,8 +13,9 @@
 				</div>
 				<nav class="site-footer__nav" aria-label="<?php esc_attr_e( 'Footer', 'bellaworks' ); ?>">
 					<?php
+					// Same menu as the header, top level only.
 					wp_nav_menu( array(
-						'theme_location' => 'footer',
+						'theme_location' => 'primary',
 						'container'      => false,
 						'menu_class'     => 'site-footer__links',
 						'fallback_cb'    => 'bellaworks_menu_fallback',

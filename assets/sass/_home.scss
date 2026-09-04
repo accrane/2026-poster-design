@@ -102,6 +102,7 @@
 .work {
 	.wrapper { display: flex; flex-direction: column; gap: 26px; @include tab { gap: 48px; } }
 	&__head { display: flex; align-items: flex-end; justify-content: space-between; .star { margin-bottom: 14px; } }
+	&__cta { display: flex; justify-content: center; }
 }
 
 // ---- About ----

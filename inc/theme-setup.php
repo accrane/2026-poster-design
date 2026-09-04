@@ -14,8 +14,7 @@ function bellaworks_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary', 'bellaworks' ),
-		'footer'  => esc_html__( 'Footer', 'bellaworks' ),
+		'primary' => esc_html__( 'Primary', 'bellaworks' ),   // header (two levels) and footer (top level)
 	) );
 
 	add_theme_support( 'html5', array(

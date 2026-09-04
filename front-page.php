@@ -131,6 +131,9 @@ $dir = get_template_directory_uri();
 					wp_reset_postdata();
 					?>
 				</div>
+				<div class="work__cta">
+					<?php bellaworks_button( 'See All Work', home_url( '/our-work/' ), 'brown' ); ?>
+				</div>
 			</div>
 		</section>
 
