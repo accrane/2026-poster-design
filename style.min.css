@@ -1467,6 +1467,23 @@ html{scroll-behavior:smooth;scroll-padding-top:112px}
 .section .news-card:hover,.section .news-card:focus-visible{color:#efdec4}
 .section .news-card:hover .news-card__title,.section .news-card:focus-visible .news-card__title{color:#df0118}
 .section .news-card:hover .news-card__thumb img,.section .news-card:focus-visible .news-card__thumb img{-webkit-transform:scale(1.05);transform:scale(1.05)}
+.notfound{min-height:70vh;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
+.notfound .page-hero__script{font-size:clamp(30px,3.6vw,52px);margin-top:16px;line-height:1.15}
+.notfound__actions{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:16px 22px;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
+.notfound__search{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:10px;max-width:480px;width:100%;margin-top:8px}
+.notfound__field{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:stretch;-ms-flex-align:stretch;align-items:stretch;border:2px solid #2b0b0a;border-radius:12px;background:rgba(255,255,255,0.35);overflow:hidden;-webkit-transition:border-color 180ms ease,-webkit-box-shadow 180ms ease;transition:border-color 180ms ease,-webkit-box-shadow 180ms ease;transition:border-color 180ms ease,box-shadow 180ms ease;transition:border-color 180ms ease,box-shadow 180ms ease,-webkit-box-shadow 180ms ease}
+.notfound__field:focus-within{border-color:#df0118;-webkit-box-shadow:inset 0 0 0 2px #df0118;box-shadow:inset 0 0 0 2px #df0118}
+.notfound__field input{-webkit-box-flex:1;-ms-flex:1;flex:1;min-width:0;height:52px;padding:0 16px;border:0;background:transparent;outline:0;font:16px "DM Sans",system-ui,sans-serif;color:#2b0b0a}
+.notfound__field input::-webkit-input-placeholder{color:rgba(43,11,10,0.5)}
+.notfound__field input::-moz-placeholder{color:rgba(43,11,10,0.5)}
+.notfound__field input:-ms-input-placeholder{color:rgba(43,11,10,0.5)}
+.notfound__field input::-ms-input-placeholder{color:rgba(43,11,10,0.5)}
+.notfound__field input::placeholder{color:rgba(43,11,10,0.5)}
+.notfound__go{width:56px;border:0;border-left:2px solid #2b0b0a;background:#2b0b0a;color:#efdec4;cursor:pointer;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-transition:background-color 180ms ease;transition:background-color 180ms ease}
+.notfound__go svg{width:18px;height:18px;-webkit-transition:-webkit-transform 180ms ease;transition:-webkit-transform 180ms ease;transition:transform 180ms ease;transition:transform 180ms ease,-webkit-transform 180ms ease}
+.notfound__go:hover,.notfound__go:focus-visible{background:#df0118}
+.notfound__go:hover svg,.notfound__go:focus-visible svg{-webkit-transform:translateX(3px);transform:translateX(3px)}
+.retro-info--crank{left:24%;top:9%}
 .gform_wrapper ul,.gform_wrapper ol{list-style:none;margin:0;padding:0}
 .gform_wrapper li{margin:0}
 .gform_wrapper img.gform_ajax_spinner{display:inline-block;margin-left:12px}

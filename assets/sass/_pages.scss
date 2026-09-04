@@ -612,3 +612,39 @@ html { scroll-behavior: smooth; scroll-padding-top: $nav-h + 24px; }
 	&__title { font-size: 24px; line-height: 0.95; transition: color 180ms ease; @include tab { font-size: 28px; } }
 	.section &:hover, .section &:focus-visible { color: $tan; .news-card__title { color: $red; } .news-card__thumb img { transform: scale(1.05); } }
 }
+
+// ---- 404 ----
+.notfound {
+	min-height: 70vh;
+	display: flex; align-items: center;
+	.page-hero__script { font-size: clamp(30px, 3.6vw, 52px); margin-top: 16px; line-height: 1.15; }
+	&__actions { display: flex; flex-wrap: wrap; gap: 16px 22px; align-items: center; }
+	&__search {
+		display: flex; flex-direction: column; gap: 10px;
+		max-width: 480px; width: 100%;
+		margin-top: 8px;
+	}
+	&__field {
+		display: flex; align-items: stretch;
+		border: 2px solid $brown; border-radius: 12px;
+		background: rgba(255, 255, 255, 0.35);
+		overflow: hidden;
+		transition: border-color 180ms ease, box-shadow 180ms ease;
+		&:focus-within { border-color: $red; box-shadow: inset 0 0 0 2px $red; }
+		input {
+			flex: 1; min-width: 0; height: 52px; padding: 0 16px;
+			border: 0; background: transparent; outline: 0;
+			font: 16px $font_body; color: $brown;
+			&::placeholder { color: rgba(43, 11, 10, 0.5); }
+		}
+	}
+	&__go {
+		width: 56px; border: 0; border-left: 2px solid $brown;
+		background: $brown; color: $tan; cursor: pointer;
+		display: flex; align-items: center; justify-content: center;
+		transition: background-color 180ms ease;
+		svg { width: 18px; height: 18px; transition: transform 180ms ease; }
+		&:hover, &:focus-visible { background: $red; svg { transform: translateX(3px); } }
+	}
+}
+.retro-info--crank { left: 24%; top: 9%; }   // just outside the top-left corner of the door frame
