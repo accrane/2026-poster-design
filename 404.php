@@ -37,7 +37,7 @@ get_header(); ?>
 				</div>
 				<div class="page-hero__art-col">
 					<div class="page-hero__art retro-object retro-object--crank">
-						<?php bellaworks_retro_info( 'This is what used to be known as rolling down the window.', 'crank' ); ?>
+						<?php bellaworks_retro_info( 'Can you imagine having to roll your window down manually?', 'crank' ); ?>
 						<img src="<?php echo esc_url( get_template_directory_uri() . '/images/notfound-crank.png' ); ?>" alt="" width="520" height="520">
 					</div>
 				</div>
