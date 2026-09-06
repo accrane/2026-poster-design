@@ -352,32 +352,67 @@ function get_excerpt($text,$limit=100) {
 
 
 
-
 /**
  * GA4 key events (ported from bellaworksweb-2024-standard).
  *
  * The gtag.js base snippet itself is injected site-wide by the
  * Insert Headers and Footers plugin (G-MRLYRVSDHD), not by the theme.
  *
- *  - click_to_call  : any tel: link, anywhere on the site
- *  - generate_lead  : Gravity Forms form 8 (Let's do this) submits successfully
+ *  - click_to_call  : a tel: link tapped on a touch device, once per session.
+ *                     Desktop "taps" are almost all crawlers clicking every link.
+ *  - generate_lead  : a Gravity Forms submission that GF did not flag as spam.
+ *                     GF shows the confirmation for spam too, so the browser
+ *                     only fires when the server has stamped the confirmation.
  */
 
-// Flag a successful submission so the next page load can report it,
-// whatever the confirmation type (message, page, or redirect).
-add_action( 'gform_after_submission_8', function () {
-	setcookie( 'bw_lead', '1', time() + 300, '/' );
-} );
+define( 'BW_GA4_ID', 'G-MRLYRVSDHD' );
+
+/** Only production reports to GA4. Local and staging copies set Google's opt-out flag before gtag loads. */
+add_action( 'wp_head', function () {
+	$host = strtolower( (string) wp_parse_url( home_url(), PHP_URL_HOST ) );
+	if ( in_array( $host, array( 'bellaworksweb.com', 'www.bellaworksweb.com' ), true ) ) {
+		return;
+	}
+	echo '<script>window["ga-disable-' . esc_js( BW_GA4_ID ) . '"] = true;</script>' . "\n";
+}, 1 );
+
+/**
+ * Mark a genuine (non-spam) submission for the lead event.
+ *  - Message confirmations get a data-lead wrapper the footer script looks for.
+ *  - Redirect / page confirmations cannot fire from the confirmation, so a short
+ *    cookie asks the next page load to report it instead. Never both.
+ */
+add_filter( 'gform_confirmation', function ( $confirmation, $form, $entry ) {
+	if ( rgar( $entry, 'status' ) === 'spam' ) {
+		return $confirmation;
+	}
+	$name = rgar( $form, 'title' );
+	if ( is_array( $confirmation ) ) {
+		setcookie( 'bw_lead', $form['id'] . '|' . $name, time() + 300, '/', '', is_ssl(), false );
+		return $confirmation;
+	}
+	return sprintf(
+		'<div data-lead="1" data-form-id="%s" data-form-name="%s">%s</div>',
+		esc_attr( $form['id'] ),
+		esc_attr( $name ),
+		$confirmation
+	);
+}, 10, 3 );
 
 add_action( 'wp_footer', function () { ?>
 <script>
 (function () {
   if (typeof gtag !== 'function') return;
 
-  // Phone taps anywhere on the site.
+  // Phone taps: touch devices only, once per session.
+  var isTouch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
   document.addEventListener('click', function (e) {
-    var a = e.target.closest('a[href^="tel:"]');
-    if (!a) return;
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (!a || !isTouch) return;
+    try {
+      if (sessionStorage.getItem('bw_called')) return;
+      sessionStorage.setItem('bw_called', '1');
+    } catch (_) {}
     gtag('event', 'click_to_call', {
       phone_number: a.getAttribute('href').replace('tel:', ''),
       link_text: a.textContent.trim()
@@ -385,14 +420,20 @@ add_action( 'wp_footer', function () { ?>
   });
 
   // Lead form.
-  function lead(source) {
-    gtag('event', 'generate_lead', { form_id: '8', form_name: 'Lets do this', source: source });
+  function lead(formId, formName, source) {
+    gtag('event', 'generate_lead', { form_id: String(formId), form_name: formName || '', source: source });
   }
   if (window.jQuery) {
-    jQuery(document).on('gform_confirmation_loaded', function () { lead('ajax'); });
+    jQuery(document).on('gform_confirmation_loaded', function (event, formId) {
+      var marker = document.querySelector('[data-lead="1"][data-form-id="' + formId + '"]');
+      if (!marker) return;
+      lead(formId, marker.getAttribute('data-form-name'), 'confirmation');
+    });
   }
-  if (/(^|; )bw_lead=1/.test(document.cookie)) {
-    lead('reload');
+  var m = document.cookie.match(/(?:^|; )bw_lead=([^;]*)/);
+  if (m) {
+    var parts = decodeURIComponent(m[1]).split('|');
+    lead(parts[0], parts.slice(1).join('|'), 'redirect');
     document.cookie = 'bw_lead=; Max-Age=0; path=/';
   }
 })();
