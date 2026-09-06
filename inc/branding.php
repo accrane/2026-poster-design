@@ -6,17 +6,23 @@
  */
 
 /**
- * Favicon: monogram on a transparent background. The SVG flips to cream in a
- * dark browser UI; the PNGs are brown for browsers that need a raster.
+ * Favicon set. The SVG and 32px PNG are the monogram on a transparent
+ * background for browser tabs (the SVG flips to cream in a dark UI). The 192px
+ * PNG, apple-touch-icon and favicon.ico sit on an opaque cream ground so the
+ * dark monogram reads in Google's result circle and on iOS home screens.
+ *
+ * No cache-busting query string: the host's robots.txt disallows "/*?", which
+ * would hide the icons from Googlebot. Rename the file to bust the cache.
+ * Everything lives in the theme; nothing needs uploading to the site root.
  * Replaces the Customizer site icon output so only one set is printed.
  */
 function bellaworks_favicon() {
 	$dir = get_template_directory_uri() . '/images/';
-	$ver = filemtime( get_template_directory() . '/images/favicon.svg' );
-	echo '<link rel="icon" href="' . esc_url( $dir . 'favicon.svg?v=' . $ver ) . '" type="image/svg+xml">' . "\n";
-	echo '<link rel="icon" href="' . esc_url( $dir . 'favicon-32.png?v=' . $ver ) . '" sizes="32x32" type="image/png">' . "\n";
-	echo '<link rel="icon" href="' . esc_url( $dir . 'favicon-192.png?v=' . $ver ) . '" sizes="192x192" type="image/png">' . "\n";
-	echo '<link rel="apple-touch-icon" href="' . esc_url( $dir . 'apple-touch-icon.png?v=' . $ver ) . '" sizes="180x180">' . "\n";
+	echo '<link rel="icon" href="' . esc_url( $dir . 'favicon.svg' ) . '" type="image/svg+xml">' . "\n";
+	echo '<link rel="icon" href="' . esc_url( $dir . 'favicon-32.png' ) . '" sizes="32x32" type="image/png">' . "\n";
+	echo '<link rel="icon" href="' . esc_url( $dir . 'favicon-192.png' ) . '" sizes="192x192" type="image/png">' . "\n";
+	echo '<link rel="icon" href="' . esc_url( $dir . 'favicon.ico' ) . '" sizes="48x48">' . "\n";
+	echo '<link rel="apple-touch-icon" href="' . esc_url( $dir . 'apple-touch-icon.png' ) . '" sizes="180x180">' . "\n";
 }
 add_action( 'wp_head', 'bellaworks_favicon', 1 );
 add_action( 'login_head', 'bellaworks_favicon', 1 );
@@ -24,6 +30,17 @@ add_action( 'admin_head', 'bellaworks_favicon', 1 );
 remove_action( 'wp_head', 'wp_site_icon', 99 );
 remove_action( 'login_head', 'wp_site_icon', 99 );
 remove_action( 'admin_head', 'wp_site_icon', 99 );
+
+/**
+ * Requests for /favicon.ico that reach WordPress redirect to the theme's icon,
+ * so no file has to sit in the site root. (Hosts whose web server 404s the
+ * path before PHP never hit this; the <link> tags above cover them.)
+ */
+function bellaworks_favicon_ico() {
+	wp_redirect( get_template_directory_uri() . '/images/favicon.ico', 301 );
+	exit;
+}
+add_action( 'do_faviconico', 'bellaworks_favicon_ico', 1 );
 
 /**
  * Login screen in the retro system: tan page, monogram, bordered card with the
